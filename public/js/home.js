@@ -135,7 +135,7 @@ async function showChat(data){
         `
         for (let i = 0; i<result.msg.length;i++){
             if (result.msg[i]["idUsers"] == result.user){
-                if(result.msg[i]["visto"] == "true"){
+                if(result.msg[i]["seen"] == "true"){
                     document.getElementById("mid").innerHTML=`
                         ${document.getElementById("mid").innerHTML}
                         <div class="container-msg-left">

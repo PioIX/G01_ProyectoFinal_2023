@@ -17,7 +17,7 @@ p{
 
 @font-face {
   font-family: 'Minecraft';
-  src: url('/fonts/minecraft_font.ttf')
+  src: url('/fonts/Minecraft.eot')
 }
 
 .Minecraft {
@@ -362,7 +362,29 @@ a{
   width: 100%;
   height: 91vh;
   display: flex;
+  flex-direction: row;
   background-image: url('/img/dirt-background.webp'); 
+}
+
+.contenedorChat{
+  height: 91vh;
+  width: 79%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorMensajes{
+  height: 80vh;
+  width: 79%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorFinal{
+  height: 11vh;
+  width: 79%;
+  display: flex;
+  flex-direction: row;
 }
 
 .left-container{

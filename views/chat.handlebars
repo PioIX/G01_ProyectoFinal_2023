@@ -64,9 +64,6 @@
 </head>
 <header class="header">
     <center><a href="/menu"><img src="img/SpeedChat.png"></img></a></center>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=p&display=swap');
-        </style>
 </header>
 <div class="contenedorRaro">
     <div id="left-container" class="left-container">
@@ -87,5 +84,14 @@
                 </div>
             {{/if}}
         {{/each}}
+        
     </div>
+    <div class="contenedorChat">
+        <div class="contenedorMensajes"></div>
+        <div class="contenedorFinal">
+            <input type="mensaje" id="message" class="input-msg" placeholder="Escriba aca" />
+            <input type="button" id="boton-chat" placeholder="Enviar" value="Enviar"/>
+        </div>
+    </div>
+    
 </div>
