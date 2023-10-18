@@ -103,7 +103,7 @@ app.post('/register', async function(req, res){
     let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users WHERE user = "${req.body.username}";`);
     if (respuesta.length === 0){
         req.session.user = req.body.username;
-        await MySQL.realizarQuery(`INSERT INTO Users (user, password, name) VALUES ("${req.body.username}", "${req.body.password}", "${req.body.name}");`);
+        await MySQL.realizarQuery(`INSERT INTO Users (user, password, mail) VALUES ("${req.body.username}", "${req.body.password}", "${req.body.name}");`);
         res.send({status: true})
     } else {
         res.send({status: false})
@@ -152,7 +152,7 @@ io.on('connection', (socket) =>{
         }
     })
     socket.on('confirmmessage', async (data)=>{
-        await MySQL.realizarQuery(`INSERT INTO MensajesChats (idUsers, idChats, Mensajes, fecha, visto) VALUES (${data.id}, ${data.idChat}, "${data.msg}", "${data.hour}", "false")`)
+        await MySQL.realizarQuery(`INSERT INTO Messages (idUsers, idChats, message, date, seen) VALUES (${data.id}, ${data.idChat}, "${data.msg}", "${data.hour}", "false")`)
         io.in(data.room).emit('confirmmessage', {msg: data.msg, id: data.id, lastmsg: data.lastMessage, sender: data.sender, hour: data.hour, idchat: data.idChat});
     });
 });
@@ -182,11 +182,11 @@ app.post('/showChat', async function(req, res){
     let user2 = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user2}"`);
     let chat = await MySQL.realizarQuery(`Select id From Chats WHERE id_user1 = "${user[0].id}" AND  id_user2 = "${user2[0].id}" OR id_user1 = "${user2[0].id}" AND  id_user2 = "${user[0].id}"`);
     if (chat.length != 0){
-        msg = await MySQL.realizarQuery(`Select * From MensajesChats WHERE idChats = "${chat[0]["id_chaty"]}" `);
+        msg = await MySQL.realizarQuery(`Select * From Messages WHERE idChats = "${chat[0]["id_chaty"]}" `);
     } else {
         await MySQL.realizarQuery(`INSERT INTO Chats (id_user1, id_user2) VALUES ("${user[0].id}", "${user2[0].id}");`)
     }
-    await MySQL.realizarQuery(`UPDATE MensajesChats SET visto = "true" WHERE visto = "false" AND idUsers = ${user2[0].id};`)
+    await MySQL.realizarQuery(`UPDATE Messages SET seen = "true" WHERE seen = "false" AND idUsers = ${user2[0].id};`)
     res.send({msg:msg, user:user[0].id, chat:chat[0]["id_chaty"], name: req.body.user2});
 });
 
@@ -209,7 +209,7 @@ app.post('/point', async function(req, res){
         };
     }
     for (let i = 0; i < chat.length; i++) {
-        msgs.push(await MySQL.realizarQuery(`Select * From MensajesChats WHERE visto = "false" AND idChats = ${chat[i]["id_chaty"]} AND idUsers != ${id}`));
+        msgs.push(await MySQL.realizarQuery(`Select * From Messages WHERE seen = "false" AND idChats = ${chat[i]["id_chaty"]} AND idUsers != ${id}`));
     }
     for (let i = 0; i < chat.length; i++) {
         for (let e = 0; e < list.length; e++){
@@ -229,7 +229,7 @@ app.post('/point', async function(req, res){
 });
 
 app.put('/checkMsg', async function(req, res){
-    await MySQL.realizarQuery(`UPDATE MensajesChats SET visto = "true" WHERE visto = "false" AND idUsers = ${req.body.id} AND idChats = ${req.body.idChat};`)
+    await MySQL.realizarQuery(`UPDATE Messages SET seen = "true" WHERE seen = "false" AND idUsers = ${req.body.id} AND idChats = ${req.body.idChat};`)
 })
 
 /*-------------------------------------------*/
