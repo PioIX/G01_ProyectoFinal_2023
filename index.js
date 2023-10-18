@@ -81,7 +81,7 @@ io.on('connection', (socket) =>{
 })
 
 app.get('/', async function(req, res){
-    let chat = await MySQL.realizarQuery(`Select id From Chats WHERE id = 10`);
+    let chat = await MySQL.realizarQuery(`Select id_chaty From Chats WHERE id_chaty = 10`);
     res.render('login', null);
 });
 
@@ -89,9 +89,10 @@ app.post('/login', async function(req,res){
     let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users WHERE user = "${req.body.username}" AND password = "${req.body.password}"; `);
     if (respuesta.length > 0){
         req.session.user = req.body.username;
-        res.send({status: true})
+        res.render('home', null)
     } else {
-        res.send({status: false})
+        res.render('login', null)
+        
     }
 })
 
@@ -104,9 +105,9 @@ app.post('/register', async function(req, res){
     if (respuesta.length === 0){
         req.session.user = req.body.username;
         await MySQL.realizarQuery(`INSERT INTO Users (user, password, mail) VALUES ("${req.body.username}", "${req.body.password}", "${req.body.name}");`);
-        res.send({status: true})
+        res.render('home', null)
     } else {
-        res.send({status: false})
+        res.render('register', null)
     }
 });
 
@@ -180,7 +181,7 @@ app.post('/showChat', async function(req, res){
     let msg = []
     let user = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user}";`);
     let user2 = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user2}"`);
-    let chat = await MySQL.realizarQuery(`Select id From Chats WHERE id_user1 = "${user[0].id}" AND  id_user2 = "${user2[0].id}" OR id_user1 = "${user2[0].id}" AND  id_user2 = "${user[0].id}"`);
+    let chat = await MySQL.realizarQuery(`Select id_chaty From Chats WHERE id_user1 = "${user[0].id}" AND  id_user2 = "${user2[0].id}" OR id_user1 = "${user2[0].id}" AND  id_user2 = "${user[0].id}"`);
     if (chat.length != 0){
         msg = await MySQL.realizarQuery(`Select * From Messages WHERE idChats = "${chat[0]["id_chaty"]}" `);
     } else {
