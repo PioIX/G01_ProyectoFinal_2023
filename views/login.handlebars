@@ -1,24 +1,17 @@
-<!-- login.handlebars -->
-<h1 id="iniciarSesion" class="Minecraft">Iniciar sesion</h1>
-<head>
-  <link rel="stylesheet" href="css/styles.css">
-  <title>SpeedCraft - Login</title>
-</head>
-<body id="bodyLogin" background="img/fondoObsidiana.jpg">
-  <form action="/login" method="post">
-    <div class="Minecraft" id="botonesLogin">
-      <center>
-      <div class="Minecraft">
-      <input type="email" name="email" id="user" placeholder="Correo electronico" required /><br><br>
-      <input type="password" name="password" id="pass" placeholder="Contraseña" required /> <br><br>
-      <button type="submit">Iniciar sesion</button>
-      <div class="Minecraft">{{message}}</div>
-      </div>
-      </center>
-      <img id="ghastLogin" src="img/Ghast.webp">
+<div class="fondoPeruano">
+    <div>
+        <div class="tituloLogin">
+            <h1 class="Minecraft">Login</h1>
+        </div>
+        <div>
+            <input type="text" id="user" placeholder="Usuario"> <br>
+            <input style="margin-bottom: 35px;" type="password" id="pass" placeholder="Contraseña"> <br>
+            <button id="btn">Iniciar</button> 
+        </div>
+        <div>
+            <a href="/register" class="blanco">¿No tenés cuenta?</a>
+        </div>
     </div>
-    
-  </form>
-  
-  <center><p id="noTenes"class="Minecraft">¿No tenes una cuenta? registrate <a href="/register" class="Minecraft">aca</a></p></center>
-</body>
+</div>
+
+<script src="/js/login.js"></script>

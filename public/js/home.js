@@ -1,82 +1,4 @@
-const IP = "ws://localhost:3000";
-const socket = io(IP);
-
-socket.on("connect", () => {
-    console.log("Me conecté a WS");
-});
-
-/*function funcionPrueba() {
-    socket.emit("incoming-message", { mensaje: "PRUEBA" });
-}
-
-
-const io = require('socket.io')(server);
-
-const sessionMiddleware = session({
-    secret: 'sararasthastka',
-    resave: true,
-    saveUnintialized: false,
-});
-
-app.use(sessionMiddleware);
-
-io.use(function(socket, next) {
-    sessionMiddleware(socket.request, socket.request.res, next);
-});
-
-io.on("connection", (socket) => {
-    //Esta línea es para compatibilizar con lo que venimos escribiendo
-    const req = socket.request;
-
-    //Esto serìa el equivalente a un app.post, app.get...
-    socket.on('incoming-message', data => {
-        console.log("INCOMING MESSAGE:", data);
-    });
-});
-
-socket.on("server-message", data => {
-    console.log("Me llego del servidor", data);
-});
-
-function funcionPrueba() {
-    socket.emit("incoming-message", { mensaje: "PRUEBA" });
-}*/
-
-
-
-
-/*var socket = io.connect("http://localhost:3000", { forceNew: true });
-
-socket.on("messages", function (data) {
-  console.log(data);
-  render(data);
-});
-
-function render(data) {
-  var html = data
-    .map(function (elem, index) {
-      return `<div class="mensaje">
-                <div class="mensaje-in">
-                    <strong>${elem.author}</strong>:
-                    <em>${elem.text}</em>
-                </div>
-              </div>`;
-    })
-    .join("");
-
-  document.getElementById("messages").innerHTML = html;
-}
-
-function addMessage(e) {
-  var message = {
-    author: document.getElementById("username").value,
-    text: document.getElementById("texto").value,
-  };
-
-  socket.emit("new-message", message);
-  return false;
-}*/
-
+const socket = io();
 const leftContainer = document.getElementById("left-container");
 const msg = document.getElementById("msg");
 const chats = document.getElementsByClassName("chat");
@@ -135,7 +57,7 @@ async function showChat(data){
         `
         for (let i = 0; i<result.msg.length;i++){
             if (result.msg[i]["idUsers"] == result.user){
-                if(result.msg[i]["seen"] == "true"){
+                if(result.msg[i]["visto"] == "true"){
                     document.getElementById("mid").innerHTML=`
                         ${document.getElementById("mid").innerHTML}
                         <div class="container-msg-left">
@@ -389,5 +311,3 @@ async function checkMsgs(data){
         console.error(error)
     }
 }
-
-//https://itnext.io/building-a-node-js-websocket-chat-app-with-socket-io-and-react-473a0686d1e1

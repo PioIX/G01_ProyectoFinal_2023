@@ -48,6 +48,74 @@ io.use(function(socket, next) {
 });
 
 
+/*-------------------------------------------*/
+
+
+// Configuración de Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCqRWOVH1NzerF8TRUpV9rzxTyBb1dTinc",
+  authDomain: "speedcraft-5bf83.firebaseapp.com",
+  projectId: "speedcraft-5bf83",
+  storageBucket: "speedcraft-5bf83.appspot.com",
+  messagingSenderId: "1099105630103",
+  appId: "1:1099105630103:web:ab343ed31878d78e88f6d2"
+};
+
+const appFirebase = initializeApp(firebaseConfig);
+const auth = getAuth(appFirebase);
+
+// Importar AuthService
+const authService = require("./authService");
+
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+
+app.get("/home", (req, res) => {
+  res.render("home");
+});
+
+app.get("/modoSolitario", (req, res) => {
+  res.render("modoSolitario");
+});
+
+app.get("/modoMultijugador", (req, res) => {
+  res.render("modoMultijugador");
+});
+
+app.get("/menu", (req, res) => {
+  res.render("menu");
+});
+
+app.get("/chat", (req, res) => {
+  res.render("chat");
+});
+
+app.get("/ranking", (req, res) => {
+  res.render("ranking");
+});
+
+app.get("/guia", (req, res) => {
+  res.render("guia");
+});
+
+app.get("/papu", (req, res) => {
+  res.render("papu");
+});
+
+app.get("/elegirmodo", (req, res) => {
+  res.render("elegirmodo");
+});
+
+/* -------------------------- CHAT ----------------------------- */
+
 
 function obtainKey(data, value){
     let values = Object.values(data);
@@ -81,7 +149,7 @@ io.on('connection', (socket) =>{
 })
 
 app.get('/', async function(req, res){
-    let chat = await MySQL.realizarQuery(`Select id_chaty From Chats WHERE id_chaty = 10`);
+    let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = 10`);
     res.render('login', null);
 });
 
@@ -89,25 +157,20 @@ app.post('/login', async function(req,res){
     let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users WHERE user = "${req.body.username}" AND password = "${req.body.password}"; `);
     if (respuesta.length > 0){
         req.session.user = req.body.username;
-        res.render('home', null)
+        res.send({status: true})
     } else {
-        res.render('login', null)
-        
+        res.send({status: false})
     }
 })
-
-app.get('/register', function(req, res){
-    res.render('register', null);
-});
 
 app.post('/register', async function(req, res){
     let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users WHERE user = "${req.body.username}";`);
     if (respuesta.length === 0){
         req.session.user = req.body.username;
-        await MySQL.realizarQuery(`INSERT INTO Users (user, password, mail) VALUES ("${req.body.username}", "${req.body.password}", "${req.body.name}");`);
-        res.render('home', null)
+        await MySQL.realizarQuery(`INSERT INTO Users (user, password, name) VALUES ("${req.body.username}", "${req.body.password}", "${req.body.name}");`);
+        res.send({status: true})
     } else {
-        res.render('register', null)
+        res.send({status: false})
     }
 });
 
@@ -181,15 +244,16 @@ app.post('/showChat', async function(req, res){
     let msg = []
     let user = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user}";`);
     let user2 = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user2}"`);
-    let chat = await MySQL.realizarQuery(`Select id_chaty From Chats WHERE id_user1 = "${user[0].id}" AND  id_user2 = "${user2[0].id}" OR id_user1 = "${user2[0].id}" AND  id_user2 = "${user[0].id}"`);
+    let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = "${user[0].id}" AND  id_user2 = "${user2[0].id}" OR id_user1 = "${user2[0].id}" AND  id_user2 = "${user[0].id}"`);
     if (chat.length != 0){
-        msg = await MySQL.realizarQuery(`Select * From Messages WHERE idChats = "${chat[0]["id_chaty"]}" `);
+        msg = await MySQL.realizarQuery(`Select * From Messages WHERE idChats = "${chat[0]["id_chat"]}" `);
     } else {
         await MySQL.realizarQuery(`INSERT INTO Chats (id_user1, id_user2) VALUES ("${user[0].id}", "${user2[0].id}");`)
     }
     await MySQL.realizarQuery(`UPDATE Messages SET seen = "true" WHERE seen = "false" AND idUsers = ${user2[0].id};`)
-    res.send({msg:msg, user:user[0].id, chat:chat[0]["id_chaty"], name: req.body.user2});
+    res.send({msg:msg, user:user[0].id, chat:chat[0]["id_chat"], name: req.body.user2});
 });
+
 
 app.post('/point', async function(req, res){
     let msgs = [];
@@ -201,7 +265,7 @@ app.post('/point', async function(req, res){
             id = list[i].id;
         }
     }
-    let chat = await MySQL.realizarQuery(`Select id_chaty, id_user2, id_user1 From Chats WHERE id_user1 = "${id}" OR id_user2 = "${id}"`); 
+    let chat = await MySQL.realizarQuery(`Select id_chat, id_user2, id_user1 From Chats WHERE id_user1 = "${id}" OR id_user2 = "${id}"`); 
     for (let i = 0; i < chat.length; i++) {
         if (chat[i]["id_user2"] == id){
             delete chat[i]["id_user2"];
@@ -210,7 +274,7 @@ app.post('/point', async function(req, res){
         };
     }
     for (let i = 0; i < chat.length; i++) {
-        msgs.push(await MySQL.realizarQuery(`Select * From Messages WHERE seen = "false" AND idChats = ${chat[i]["id_chaty"]} AND idUsers != ${id}`));
+        msgs.push(await MySQL.realizarQuery(`Select * From Messages WHERE seen = "false" AND idChats = ${chat[i]["id_chat"]} AND idUsers != ${id}`));
     }
     for (let i = 0; i < chat.length; i++) {
         for (let e = 0; e < list.length; e++){
@@ -229,130 +293,7 @@ app.post('/point', async function(req, res){
     res.send(countMsg)
 });
 
+
 app.put('/checkMsg', async function(req, res){
     await MySQL.realizarQuery(`UPDATE Messages SET seen = "true" WHERE seen = "false" AND idUsers = ${req.body.id} AND idChats = ${req.body.idChat};`)
 })
-
-/*-------------------------------------------*/
-
-
-// Configuración de Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyCqRWOVH1NzerF8TRUpV9rzxTyBb1dTinc",
-  authDomain: "speedcraft-5bf83.firebaseapp.com",
-  projectId: "speedcraft-5bf83",
-  storageBucket: "speedcraft-5bf83.appspot.com",
-  messagingSenderId: "1099105630103",
-  appId: "1:1099105630103:web:ab343ed31878d78e88f6d2"
-};
-
-const appFirebase = initializeApp(firebaseConfig);
-const auth = getAuth(appFirebase);
-
-// Importar AuthService
-const authService = require("./authService");
-
-app.get("/", (req, res) => {
-  res.render("login");
-});
-
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.post("/register", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    await authService.registerUser(auth, { email, password });
-    res.render("register", {
-      message: "Registro exitoso. Puedes iniciar sesion ahora.",
-    });
-  } catch (error) {
-    console.error("Error en el registro:", error);
-    res.render("register", {
-      message: "Error en el registro: " + error.message,
-    });
-  }
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const userCredential = await authService.loginUser(auth, {
-      email,
-      password,
-    });
-    // Aquí puedes redirigir al usuario a la página que desees después del inicio de sesión exitoso
-    res.redirect("/home");
-  } catch (error) {
-    console.error("Error en el inicio de sesion:", error);
-    res.render("login", {
-      message: "Error en el inicio de sesion: " + error.message,
-    });
-  }
-});
-
-app.get("/home", (req, res) => {
-  // Agrega aquí la lógica para mostrar la página del dashboard
-  res.render("home");
-});
-
-app.get("/modoSolitario", (req, res) => {
-  // Agrega aquí la lógica para mostrar la página del dashboard
-  res.render("modoSolitario");
-});
-
-app.get("/modoMultijugador", (req, res) => {
-  // Agrega aquí la lógica para mostrar la página del dashboard
-  res.render("modoMultijugador");
-});
-
-app.get("/menu", (req, res) => {
-  res.render("menu");
-});
-
-app.get("/chat", (req, res) => {
-  res.render("chat");
-});
-
-app.get("/ranking", (req, res) => {
-  res.render("ranking");
-});
-
-app.get("/guia", (req, res) => {
-  res.render("guia");
-});
-
-app.get("/papu", (req, res) => {
-  res.render("papu");
-});
-
-app.get("/elegirmodo", (req, res) => {
-  res.render("elegirmodo");
-});
-
-/*
-io.on("connection", (socket) => {
-  //Esta línea es para compatibilizar con lo que venimos escribiendo
-  const req = socket.request;
-
-  //Función Listener
-  //Esto serìa el equivalente a un app.post, app.get...
-  socket.on('incoming-message', data => {
-      console.log("INCOMING MESSAGE:", data); 
-      io.emit("server-message", { mensaje: "MENSAJE DEL SERVIDOR" });
-      socket.on("server-message", data => {
-        console.log("Me llego del servidor", data);
-    });      
-  });
-});
-
-setInterval(() => io.emit("server-message", { mensaje: "MENSAJE DEL SERVIDOR" }), 2000); */
-
-/************************************** */

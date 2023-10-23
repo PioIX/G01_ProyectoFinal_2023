@@ -1,71 +1,8 @@
-<!-- https://www.youtube.com/watch?v=7b79DwrDY5U -->
-
-<!--<html>
-<head>
-    <link rel="stylesheet" href="css/styles.css">
-    <title>SpeedChat</title>
-</head>
-<body>
-    <script src="/socket.io/socket.io.js"></script>
-	<script src="/js/ws.js"></script>
-    <header class="header" id="headerChat">
-    <center><a href="/menu"><img src="img/SpeedChat.png"></img></a></center>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=p&display=swap');
-        </style>
-     
+<header>
+    <center><a href="/home" class="logo"><img src="/img/SpeedChat.png"></a></center>
+    <img id="imagenSalir" class="logout" src="/img/salir.webp" onclick="disconnect()">
 </header>
-        <div class="container-contactos">
-            <div class="contactos">
-                <div class="contacto">
-                    <p>canva</p>
-                </div>
-                <div class="contacto">
-                    <p>morro</p>
-                </div>
-                <div class="contacto">
-                    <p>chian</p>
-                </div>
-            </div>
-            <div class="chat">
-                <div class="mensajes">
-                    <div class="mensaje">
-                        <div class="mensaje-in">
-                            <p>nooo</p>
-                        </div>
-                    </div>
-                    <div class="mensaje">
-                        <div class="mensaje-in">
-                            <p>mis viejos lo hicieron asado</p>
-                        </div>
-                    </div>
-                    <div class="mensaje">
-                        <div class="mensaje-in">
-                            <p>xdsafgaesgts</p>
-                        </div>
-                    </div>
-                </div>
-                <form onsubmit="return addMessage(this)">
-                    <input type="text" id="username" placeholder="Usuario" />
-                    <input type="text" id="texto" placeholder="Mensaje" />
-                    <input type="submit" value="Enviar" />
-                </form>
-            </div>
-        </div>
-</body>
--->
-
-
-
-
-<head>
-    <title>SpeedChat</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<header class="header">
-    <center><a href="/menu"><img src="img/SpeedChat.png"></img></a></center>
-</header>
-<div class="contenedorRaro">
+<div class="container">
     <div id="left-container" class="left-container">
         {{# each users}}
             {{#if online}}
@@ -83,15 +20,17 @@
                     </div>
                 </div>
             {{/if}}
+            
         {{/each}}
-        
     </div>
-    <div class="contenedorChat">
-        <div class="contenedorMensajes"></div>
-        <div class="contenedorFinal">
-            <input type="mensaje" id="message" class="input-msg" placeholder="Escriba aca" />
-            <input type="button" id="boton-chat" placeholder="Enviar" value="Enviar"/>
+    <div class="right-container">
+        <div id="mid-container" class="mid-container">
+            <div class="temp">
+                <div><img src="/img/bloqueTierra.webp" height="300px"></div>
+                <p>¡Ya podés empezar a chatear!</p>
+            </div>
         </div>
     </div>
-    
 </div>
+
+<script src="/js/home.js"></script>

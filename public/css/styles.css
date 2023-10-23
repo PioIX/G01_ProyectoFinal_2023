@@ -319,29 +319,6 @@ a{
   width: 5px;  
 }
 
-/* Cambiar height del scroll ???? */
-
-.left-container::-webkit-scrollbar-track {
-  background: #131d24;        
-}
-
-.left-container::-webkit-scrollbar-thumb {
-  background-color: #2b3b44;    
-}
-
-
-
-.mid::-webkit-scrollbar {
-  width: 8px;           
-}
-
-.mid::-webkit-scrollbar-track {
-  background: rgba(255,255,255, 0.1);        
-}
-
-.mid::-webkit-scrollbar-thumb {
-  background-color: rgba(136, 136, 136, 0.8);    
-}
 
 
 /* CHAT */
@@ -576,6 +553,240 @@ a{
   color: white;
 }
 
+
+
+
+
+/* CHAT */
+
+header{
+  background-image: url('/img/fondoObsidiana.jpg');
+  height: 9vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 1000;
+  color: white;
+  padding: 30px;
+}
+
+.logout{
+  height: 42px;
+  cursor: pointer;
+}
+
+.logo{
+  display: flex;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  align-items: center;
+}
+
+.container{
+  width: 100%;
+  height: 91vh;
+  display: flex;
+  background-color: pink;
+}
+
+.left-container{
+  background-image: url('/img/fondoPiedra.jpg');
+  width: 21%;
+  height: 100%;
+  overflow-y: scroll;
+  border-right: url('/img/fondoPiedra.jpg') 2px;
+}
+
+#imagenSalir{
+  height: 8vh;
+  width: 4vw;
+}
+
+.right-container{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.mid-container{
+  width: 100%;
+  height: 100%;
+}
+
+.mid{
+  width: 100%;
+  height: 78.9%;
+  background-image: url('/img/dirt-background.webp');
+  background-color: #0b141a;
+  overflow-y: scroll;
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+
+.temp{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/img/fondoTemp.jpg');
+}
+
+.temp p{
+  color: white;
+  font-size: 45px;
+  margin-top: 30px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.chat-name{
+  background-image: url('/img/pasto.png');
+  color: white;
+  height: 11.1%;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  font-size: 21px;
+  width: 100%;
+}
+
+.chat-name svg{
+  height: 50px;
+  padding-right: 15px;
+}
+
+.bottom{
+  background-image: url('/img/dirt-background.webp');
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom button{
+  display: flex;
+  background-color: #131d24; 
+  border:none; 
+  border-radius: 100%;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.msg{
+  width: 80%;
+  outline:none;
+  height: 55%;
+  border-radius: 10px;
+  margin-right: 30px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding-left: 17px;
+  background-color: #2a3942;
+  font-weight: 400;
+}
+
+.msg::placeholder{
+  color: #8696a0;
+}
+
+.msg-img{
+  height: 50px;
+  background-color: white;
+  border-radius: 100%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.btn{
+  border-radius: 100%;
+  font-size: 30px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.chat{
+  display: flex;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+  padding: 10px;
+  justify-content: space-between;
+  background-image: url('/img/maderita.jpg');
+  margin-bottom: 1vh;
+  border-bottom: solid rgba(128, 128, 128, 0.3) 1px;
+  font-size: 21px;
+  padding-left: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.chat > *{
+  pointer-events:none;
+}
+
+.chat:hover{
+  background-color: #2b3b44;
+}
+
+.chat svg{
+  pointer-events:none;
+  height: 50px;
+  width: 50px;
+  border-radius: 90%;
+  margin-right: 20px;
+}
+
+
+
+.point{
+  border-radius: 100%;
+  background-color: #00a884;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 13px;
+}
+
+.container-msg-right{
+  margin-bottom: 15px;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-right: 40px;
+}
+
+.container-msg-right > *{
+  background-color: #8696a0;
+  color: white;
+}
+
+.container-msg-left{
+  margin-bottom: 15px;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-left: 40px;
+}
+
+.container-msg-left > *{
+  background-color: #11a040;
+  color: white;
+}
+
 .message{
   border-radius: 20px;
   display: flex;
@@ -586,13 +797,17 @@ a{
   box-shadow: 0px 1px 13px 0px rgba(0,0,0,0.70); 
 }
 
+.blanco{
+  color: white;
+}
+
 
 /* LOGIN */
 
-.container-login{
+.fondoPeruano{
   display: flex;
   height: 100vh;
-  background-image: url('/img/image1.png');
+  background-image: url('/img/dirt-background.webp');
   background-color: #141414;
   justify-content: center;
   align-items: center;
@@ -610,14 +825,17 @@ a{
   box-shadow: 0px 1px 17px 8px rgba(0,0,0,0.66);
 }
 
-.title-login {
+.tituloLogin {
   display: flex;
   justify-content: left;
+  margin-bottom: 5vh;
   padding-left: 40px;
   align-items: center;
-  height: 30%;
+  font-size: 40px;
   text-align: left;
 }
+
+
 
 .inputs-login{
   display: flex;
@@ -677,3 +895,5 @@ a{
 .no-tenes-cuenta a:hover{
   font-size: 1.05rem;
 }
+
+
