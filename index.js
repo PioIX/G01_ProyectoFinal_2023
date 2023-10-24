@@ -149,7 +149,7 @@ io.on('connection', (socket) =>{
 })
 
 app.get('/', async function(req, res){
-    let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = 10`);
+   // let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = 10`);
     res.render('login', null);
 });
 
@@ -183,9 +183,12 @@ io.on('connection', (socket) =>{
     })
 
     socket.on('relog', async (data) => {
+        console.log("Relog ", data)
         userOnline[data] = socket;        
         let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users;`);
+        console.log(respuesta)
         let users = Object.keys(userOnline);
+        console.log(users)
         for (let i = 0; i<respuesta.length; i++){
             if (users.includes(respuesta[i].user)){
                 respuesta[i].online = true;
@@ -194,7 +197,7 @@ io.on('connection', (socket) =>{
         let online = respuesta.filter(p => p.online==true)
         let not_online = respuesta.filter(p => p.online!=true)
         let new_respuesta = online.concat(not_online)
-        socket.broadcast.emit("relog", {respuesta: new_respuesta});
+        socket.emit("relog", {respuesta: new_respuesta});
     })
 
     socket.on('room', async (data)=>{

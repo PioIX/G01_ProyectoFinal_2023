@@ -1,10 +1,10 @@
-<header>
-    <center><a href="/home" class="logo"><img src="/img/SpeedChat.png"></a></center>
+<header id="headerChat">
+    <a href="/home"class="header" id="speedChat"><img src="/img/SpeedChat.png"></a>
     <img id="imagenSalir" class="logout" src="/img/salir.webp" onclick="disconnect()">
 </header>
-<div class="container">
+<div class="container-chat">
     <div id="left-container" class="left-container">
-        {{# each users}}
+        {{#each users}}
             {{#if online}}
                 <div id="{{user}}" class="chat">
                     <div style="display: flex;">
@@ -27,7 +27,7 @@
         <div id="mid-container" class="mid-container">
             <div class="temp">
                 <div><img src="/img/bloqueTierra.webp" height="300px"></div>
-                <p>¡Ya podés empezar a chatear!</p>
+                <p>¡Ya podes empezar a chatear!</p>
             </div>
         </div>
     </div>
