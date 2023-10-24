@@ -14,7 +14,7 @@ let idChat;
 pointFetch({data: sessionStorage.getItem("user")})
 
 socket.emit('relog', sessionStorage.getItem("user"));
- 
+console.log(sessionStorage.getItem("user"))
   
 const click = function (event) {
     socket.emit('room', {user2: event.target.id, user: sessionStorage.getItem("user")})
@@ -165,6 +165,7 @@ socket.on('add-user', (data) =>{
 })
 
 socket.on('relog', (data) =>{
+    console.log("Relog ", data)
     leftContainer.innerHTML='';
     for (let i = 0; i<data.respuesta.length; i++){
         if (data.respuesta[i].user != sessionStorage.getItem("user")){
