@@ -230,7 +230,7 @@ body {
 }
 
 #headerChat{
-  background-image: url('/img/fondoPiedra.jpg');
+  background-image: url('/img/fondoLadrilloPiedra.jpg');
 }
 
 #ghastLogin{
@@ -648,7 +648,7 @@ a{
 }
 
 .bottom{
-  background-image: url('/img/maderita.jpg');
+  background-image: url('/img/fondoTronco.jpg');
   width: 100%;
   height: 10%;
   display: flex;
@@ -756,7 +756,7 @@ a{
 }
 
 .container-msg-right > *{
-  background-image: url('/img/fondoObsidiana.jpg');
+  background-image: url('/img/fondoAbedul.png');
   color: white;
 }
 
@@ -770,7 +770,7 @@ a{
 }
 
 .container-msg-left > *{
-  background-image: url('/img/maderaOscura.png');
+  background-image: url('/img/fondoMaderaOscura.png');
   color: white;
 }
 
@@ -791,7 +791,7 @@ a{
 
 #speedChat{
   margin-left: 32vw;
-  margin-right: 28vw;
+  margin-right: 25vw;
 }
 
 /* LOGIN */
