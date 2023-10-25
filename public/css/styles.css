@@ -17,7 +17,7 @@ p{
 
 @font-face {
   font-family: 'Minecraft';
-  src: url('/fonts/Minecraft.eot')
+  src: url('public/fonts/Minecraft.eot')
 }
 
 .Minecraft {
@@ -73,7 +73,6 @@ body {
 
 #bienvenido {
   margin-top: 50px;
-  margin-bottom: 75px;
   font-size: 60px;
   color: white;
 }
@@ -84,7 +83,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin-right: 70px;
 }
 
@@ -587,8 +585,10 @@ a{
 }
 
 #imagenSalir{
+  display: flex;
   height: 8vh;
   width: 4vw;
+  align-items: right;
 }
 
 
@@ -788,18 +788,18 @@ a{
   color: white;
 }
 
+
 #speedChat{
   margin-left: 32vw;
   margin-right: 28vw;
 }
-
 
 /* LOGIN */
 
 .fondoPeruano{
   display: flex;
   height: 100vh;
-  background-image: url('/img/dirt-background.webp');
+  background-image: url('/img/fondoObsidiana.jpg');
   background-color: #141414;
   justify-content: center;
   align-items: center;
