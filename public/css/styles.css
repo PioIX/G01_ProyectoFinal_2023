@@ -30,7 +30,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  background-color: #fff;
+  background-color: white;
 }
 
 
@@ -67,7 +67,6 @@ body {
 #creeperInicio {
   width: 450px;
   height: 350px;
-  margin-top: 10vh;
   margin-left: 120px;
   -webkit-user-drag: none;
 }
@@ -85,7 +84,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20vh;
+
   margin-right: 70px;
 }
 
@@ -233,7 +232,7 @@ body {
 }
 
 #headerChat{
-  background-image: url('/img/pasto.png');
+  background-image: url('/img/fondoPiedra.jpg');
 }
 
 #ghastLogin{
@@ -592,6 +591,7 @@ a{
   width: 4vw;
 }
 
+
 .right-container{
   width: 100%;
   height: 100%;
@@ -606,7 +606,7 @@ a{
 .mid{
   width: 100%;
   height: 78.9%;
-  background-image: url('/img/dirt-background.webp');
+  background-image: url('/img/maderita.jpg');
   background-color: #0b141a;
   overflow-y: scroll;
   padding-top: 15px;
@@ -632,8 +632,8 @@ a{
 }
 
 .chat-name{
-  background-image: url('/img/pasto.png');
-  color: white;
+  background-image: url('/img/fondoTronco.jpg');
+  color: black;
   height: 11.1%;
   display: flex;
   align-items: center;
@@ -648,7 +648,7 @@ a{
 }
 
 .bottom{
-  background-image: url('/img/dirt-background.webp');
+  background-image: url('/img/maderita.jpg');
   width: 100%;
   height: 10%;
   display: flex;
@@ -756,7 +756,7 @@ a{
 }
 
 .container-msg-right > *{
-  background-color: #8696a0;
+  background-image: url('/img/fondoObsidiana.jpg');
   color: white;
 }
 
@@ -770,7 +770,7 @@ a{
 }
 
 .container-msg-left > *{
-  background-color: #11a040;
+  background-image: url('/img/maderaOscura.png');
   color: white;
 }
 
@@ -789,7 +789,8 @@ a{
 }
 
 #speedChat{
-  align-items: center;
+  margin-left: 32vw;
+  margin-right: 28vw;
 }
 
 
