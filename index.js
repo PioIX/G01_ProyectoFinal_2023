@@ -183,12 +183,9 @@ io.on('connection', (socket) =>{
     })
 
     socket.on('relog', async (data) => {
-        console.log("Relog ", data)
         userOnline[data] = socket;        
         let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users;`);
-        console.log(respuesta)
         let users = Object.keys(userOnline);
-        console.log(users)
         for (let i = 0; i<respuesta.length; i++){
             if (users.includes(respuesta[i].user)){
                 respuesta[i].online = true;
