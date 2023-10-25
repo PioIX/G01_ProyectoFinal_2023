@@ -297,7 +297,7 @@ socket.on('confirmmessage', (data) =>{
     
 })
 
-
+socket.emit('relog', sessionStorage.getItem("user"));
 
 async function checkMsgs(data){
     try{
