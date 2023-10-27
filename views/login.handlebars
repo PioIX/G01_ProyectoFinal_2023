@@ -1,20 +1,18 @@
-<div class="fondoPeruano">
-    <div>
-        <div class="tituloLogin">
-            <h1 class="Minecraft">Login</h1>
+<body style="background-image: url('/img/fondoObsidiana.jpg');">
+        <div class="container-login">
+            <div class="tituloLogin">
+                <h1 class="Minecraft">Login</h1>
+            </div>
+            <div>
+                <div class="container-input-login">
+                    <input style="color: black" type="text" id="user" class="Minecraft" placeholder="Usuario"> <br><br>
+                    <input style="color: black"type="password" id="pass" class="Minecraft" placeholder="Contraseña"> <br>
+                </div>
+                <button id="btn" class="Minecraft" style="color:black">Iniciar</button> 
+            </div>
+            <a href="/register" class="Minecraft" class="blanco" id="noTenes" >¿No tenes cuenta?</a>
         </div>
-        <div>
-            <input type="text" id="user" class="Minecraft" placeholder="Usuario"> <br>
-            <input style="margin-bottom: 35px;" type="password" id="pass" class="Minecraft" placeholder="Contraseña"> <br>
-            <button id="btn" class="Minecraft">Iniciar</button> 
-        </div>
-        <div>
-            <img src="img/Ghast.webp"  id="ghastLogin"></img>
-        </div>
-        <div>
-            <a href="/register" class="Minecraft" class="blanco">¿No tenes cuenta?</a>
-        </div>
-    </div>
-</div>
+    <img src="img/Ghast.webp"  id="ghastLogin"></img>
+</body>
 
 <script src="/js/login.js"></script>
