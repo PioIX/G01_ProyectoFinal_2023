@@ -66,24 +66,24 @@ body {
 
 #creeperInicio {
   width: 450px;
-  height: 350px;
-  margin-left: 120px;
+  height: 300px;
+  margin-left: 5vw;
   -webkit-user-drag: none;
 }
 
 #bienvenido {
-  margin-top: 50px;
-  font-size: 60px;
+  margin-top: 45px;
+  font-size: 50px;
   color: white;
 }
 
 #textoHome {
   height: 10%;
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 70px;
+  margin-right: 5vw;
 }
 
 #eleccion{
@@ -122,10 +122,12 @@ body {
 
 #yaTenes{
   margin-top: 120px;
+  font-size: 20px;
 }
 
 #noTenes{
   margin-top: 120px;
+  font-size: 20px;
 }
 
 #Kuma{
@@ -241,8 +243,8 @@ body {
 }
 
 #magmaRegistro{
-  height: 400px;
-  width: 250px;
+  height: 430px;
+  width: 180px;
   margin-left: 20vw;
   -webkit-user-drag: none;
 }
@@ -578,7 +580,7 @@ a{
 }
 
 .left-container{
-  background-image: url('/img/fondoPiedra.jpg');
+  background-image: url('/img/fondoLadrilloPiedra.jpg');
   width: 21%;
   height: 100%;
   overflow-y: scroll;
@@ -794,11 +796,23 @@ a{
   margin-right: 25vw;
 }
 
+/* REGISTRO */
+
+.title-register{
+  font-size: 30px;
+  margin-bottom: 10vh;
+}
+
+.container-register{
+  margin-left: 20vw;
+  margin-top: 5vh;
+}
+
 /* LOGIN */
 
 .fondoPeruano{
   display: flex;
-  height: 100vh;
+  height: 100%;
   background-image: url('/img/fondoObsidiana.jpg');
   background-color: #141414;
   justify-content: center;
@@ -822,9 +836,14 @@ a{
   justify-content: left;
   margin-bottom: 5vh;
   padding-left: 40px;
-  align-items: center;
+  align-items: left;
   font-size: 40px;
   text-align: left;
+}
+
+.container-login{
+  margin-left: 20vw;
+  margin-top: 5vh;
 }
 
 
@@ -850,12 +869,14 @@ a{
   font-size: 1.2rem;
 }
 
+
+
 .inputs-login button {
   background-color: black;
   color: white;
   width: 60%;
   outline: none;
-  font-size: 1rem;
+  font-size: 30px;
   padding: 10px 0 10px 0;
   border: none;
   border-radius: 30px;
@@ -889,3 +910,113 @@ a{
 }
 
 
+/* JUEGO SOLITARIO */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+body {
+	background: #eee;
+	font-family: 'minecraftfont';
+	padding: 10px;
+	color: #404040;
+}
+h1 {font-size: 3em;}
+h2 {font-size: 2.6em;}
+h3 {font-size: 2.2em;}
+h4 {font-size: 1.8em;}
+h5 {font-size: 1.4em;}
+h6 {font-size: 1.0em;}
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 4px;
+	
+}
+p{ margin: 10px 0;}
+
+input[type="text"] {
+	font-family: 'minecraftfont';
+	font-size: 1em;
+	border: 2px solid #404040;
+	background: #8B8B8B;
+	padding: 2px;
+}
+
+.clearfix:before,.clearfix:after{content:"";display:table}
+.clearfix:after{clear:both}
+
+.ingredient { cursor: pointer; }
+
+.crafting-holder {
+	float:left;
+	padding: 10px;
+	margin-top: 10px;
+	background: #C6C6C6;
+	border: 2px solid #373737;
+	border-right-color: #FFF;
+	border-bottom-color: #FFF;
+}
+
+.crafting {
+	width: 230px;
+	margin: 0 auto;
+}
+
+.crafting-table {
+	background: #C6C6C6;
+	border: outset 2px #999;
+	text-align: left !important;
+	margin-left: 2px;
+	border: 0;
+	line-height: 42px;
+}
+
+.grid, .grid-large {
+	float: left;
+	display: block;
+	text-align: center !important;
+	background-color: #8B8B8B;
+	border: 2px solid #373737;
+	border-right-color: #FFF;
+	border-bottom-color: #FFF;
+	vertical-align: middle;
+}
+.grid-large img {
+	margin-top: 8px;
+	
+}
+.grid {
+	width: 32px;
+	height: 32px;
+}
+.grid-large {
+	width: 48px;
+	height: 48px;
+}
+
+.crafting .recipe {
+	float: left;
+	width: 110px;
+}
+.crafting .arrow {
+	width: 32px;
+	height: 27px;
+	margin: 62px 15px 0 15px;
+	float: left;
+	background: url('http://hydra-media.cursecdn.com/minecraft.gamepedia.com/8/86/Grid_layout_Arrow_%28small%29.png?version=e67926f220c560fa401e958053a3bf1f');
+}
+
+#crafting-table-output {
+	float: left;
+	padding-top: 50px;
+}
+
+.items {
+	margin-top: 20px;
+}
+
+.inventory-holder {
+	margin-top: 20px;
+}
+
+#item-search-form {
+	margin-bottom: 2px;
+}
