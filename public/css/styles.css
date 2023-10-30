@@ -909,3 +909,38 @@ a{
   font-size: 1.05rem;
 }
 
+#tablaPuntaje{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 400px;
+  text-align: center;
+  font-size: 32px;
+}
+
+#boton_puntaje_logout {
+  width: 200px;
+  text-align: left;
+  position: fixed;
+  top: 0;
+  right: 2;
+  display: flex;
+  align-items: flex-end;
+  margin: 10px;
+  margin-left: 200px; 
+  font-size: 30px;
+  font-family: 'Belanosima', sans-serif;
+}
+
+#modoJuego{
+  display: flex;
+  text-align: right;
+  position: fixed;
+  top: 0;
+  right: 0.5;
+  left: 5;
+  align-items: flex-end;
+  margin-top: 10px;
+  font-size: 30px;
+}
+
