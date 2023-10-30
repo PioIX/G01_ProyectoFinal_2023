@@ -11,4 +11,46 @@
 </header>
 <body background="img/fondoPiedra.jpg">
     
+<form action="/puntaje" method="RENDER" class="container-sm" id="index">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+        </style>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <div class="mb-3 form-group" id="reglas">
+        <center><h2 id="tituloReglas">Puntaje</h2></center>
+        <div id="tablaPuntaje">
+            <table class="table caption-top">
+            <thead>
+                <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Puntaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                  {{#each pibardos}}
+                <tr>
+                <td>{{nombre_usuario}}</td>
+                <td>{{puntaje}}</td>
+                </tr>
+                 {{/each}}
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="mb-3 form-group" >
+        <div class="mb-3 form-group" id="boton_puntaje_logout">
+            <a href="/index" style="color: #000000">Logout</a>
+        </div>
+    </div>
+
+    <div class="mb-3 form-group" id="modoJuego"> 
+        <a href="/modojuego" style="color: #000000"> Modos de juego</a>
+    </div>
+</form>
+
 </body>
