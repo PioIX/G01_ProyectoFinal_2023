@@ -38,6 +38,7 @@ async function showChat(data){
 
         });
         const result = await response.json();
+        console.log(result)
         midContainer.innerHTML = `
             <div id="chat-name" class="chat-name">
                 ${svg}
@@ -55,17 +56,19 @@ async function showChat(data){
                 <button id="btn-send" onclick="sendmsg()"><svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="white" d="M1.101,21.757L23.8,12.028L1.101,2.3l0.011,7.912l13.623,1.816L1.112,13.845 L1.101,21.757z"></path></svg></button>
             </div>
         `
+        console.log(result.msg);
+
         for (let i = 0; i<result.msg.length;i++){
             if (result.msg[i]["idUsers"] == result.user){
-                if(result.msg[i]["visto"] == "true"){
+                if(result.msg[i]["seen"] == "true"){
                     document.getElementById("mid").innerHTML=`
                         ${document.getElementById("mid").innerHTML}
                         <div class="container-msg-left">
                             <div class="message">
-                                <p class="text">${result.msg[i]["Mensajes"]}</p>
+                                <p class="text">${result.msg[i]["message"]}</p>
                                 <div style="margin-left: 10px; display: flex; color:
                                     #999d9f; justify-content: center; align-items: flex-end;">
-                                    <p class="text" style="font-size: 10px; margin-right:5px;">${result.msg[i].fecha}</p>
+                                    <p class="text" style="font-size: 10px; margin-right:5px;">${result.msg[i].date}</p>
                                     
                                 </div>
                             </div>
@@ -76,10 +79,10 @@ async function showChat(data){
                         ${document.getElementById("mid").innerHTML}
                         <div class="container-msg-left">
                             <div class="message">
-                                <p class="text">${result.msg[i]["Mensajes"]}</p>
+                                <p class="text">${result.msg[i]["message"]}</p>
                                 <div style="margin-left: 10px; display: flex; color:
                                     #999d9f; justify-content: center; align-items: flex-end;">
-                                    <p class="text" style="font-size: 10px; margin-right:5px;">${result.msg[i].fecha}</p>
+                                    <p class="text" style="font-size: 10px; margin-right:5px;">${result.msg[i].date}</p>
                                     
                                 </div>
                             </div>
@@ -92,10 +95,10 @@ async function showChat(data){
                     ${document.getElementById("mid").innerHTML}
                     <div class="container-msg-right">
                         <div class="message">
-                            <p class="text">${result.msg[i]["Mensajes"]}</p>
+                            <p class="text">${result.msg[i]["message"]}</p>
                             <div style="margin-left: 10px; display: flex; color:
                                 #999d9f; justify-content: center; align-items: flex-end;">
-                                <p class="text" style="font-size: 10px; margin-right:5px;">${result.msg[i].fecha}</p>
+                                <p class="text" style="font-size: 10px; margin-right:5px;">${result.msg[i].date}</p>
                             </div>
                         </div>
                     </div>

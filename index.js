@@ -244,6 +244,11 @@ app.post('/showChat', async function(req, res){
     let msg = []
     let user = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user}";`);
     let user2 = await MySQL.realizarQuery(`Select id From Users WHERE user = "${req.body.user2}"`);
+    //Mejorar la query para obtener 
+    // user 1 : 4
+    // user 2: 248
+    // 4 248
+    // 248 4
     let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = "${user[0].id}" AND  id_user2 = "${user2[0].id}" OR id_user1 = "${user2[0].id}" AND  id_user2 = "${user[0].id}"`);
     if (chat.length != 0){
         msg = await MySQL.realizarQuery(`Select * From Messages WHERE idChats = "${chat[0]["id_chat"]}" `);
