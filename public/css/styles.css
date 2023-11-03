@@ -944,3 +944,60 @@ a{
   font-size: 30px;
 }
 
+/* ------------- GAME ------------- */
+
+.main-game-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.row{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.square{
+  font-family: 'Minecraft', Arial, Verdana, sans-serif;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #787c7e;
+  outline: none;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}
+.result{
+  text-align: center;
+  font-size: 36px
+}
+
+.gray{
+  background-color: grey;
+}
+
+.gold{
+  background-color: #c9b458;
+}
+.green{
+  background-color: #6aaa64;
+}
+.red{
+  background-color: red;
+}
+
+
+
+
+
+/* ------------- PUNTAJE ------------- */
+
+#tablaPuntaje{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 400px;
+  text-align: center;
+  font-size: 32px;
+}
