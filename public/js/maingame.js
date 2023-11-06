@@ -82,7 +82,7 @@ function listenInput(actualRow){
                         rightIndex.forEach(element => {
                             squares[element].classList.add('green')
                         });
-                        showResult('ooaaaa bien ahi amigo, le re pegaste')
+                        showResult(`Correcto, era un/a "${word.toUpperCase()}"`)
                         return;
                     }
                

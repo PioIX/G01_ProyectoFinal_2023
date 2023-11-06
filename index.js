@@ -310,7 +310,10 @@ app.put('/checkMsg', async function(req, res){
 
 app.post('/modoSolitario',async function(req,res){
     let palabras = await MySQL.realizarQuery("SELECT nombre_item FROM Items;");
-    let imagenes = await MySQL.realizarQuery("SELECT imagen FROM Items;");
     res.send(palabras)
+});
+
+app.put('/modoSolitario',async function(req,res){
+    let imagenes = await MySQL.realizarQuery("SELECT imagen FROM Items;");
     res.send(imagenes)
 });

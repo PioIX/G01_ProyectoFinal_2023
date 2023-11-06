@@ -19,7 +19,7 @@
   async function fetchImagenes() {    
     try {
       const response = await fetch("/modoSolitario", {
-        method: 'POST', // or 'PUT', 
+        method: 'PUT', 
         headers: {
           "Content-Type": "application/json",
         }

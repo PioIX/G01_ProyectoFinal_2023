@@ -961,7 +961,7 @@ a{
   width: 40px;
   height: 40px;
   border: none;
-  background-color: #787c7e;
+  background-color: black;
   outline: none;
   font-size: 30px;
   text-transform: uppercase;
@@ -987,6 +987,13 @@ a{
   background-color: red;
 }
 
+#ñordñe123{
+  margin-top: 20vh;
+}
+
+#boton_ñordñe_volver{
+  font-size: 40px;
+}
 
 
 
