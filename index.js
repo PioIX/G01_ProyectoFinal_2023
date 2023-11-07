@@ -260,6 +260,8 @@ app.post('/showChat', async function(req, res){
 });
 
 
+
+
 app.post('/point', async function(req, res){
     let msgs = [];
     let id;
@@ -301,4 +303,17 @@ app.post('/point', async function(req, res){
 
 app.put('/checkMsg', async function(req, res){
     await MySQL.realizarQuery(`UPDATE Messages SET seen = "true" WHERE seen = "false" AND idUsers = ${req.body.id} AND idChats = ${req.body.idChat};`)
+});
+
+
+/* JUEGO */
+
+app.post('/modoSolitario',async function(req,res){
+    let palabras = await MySQL.realizarQuery("SELECT nombre_item FROM Items;");
+    res.send(palabras)
+});
+
+app.put('/modoSolitario',async function(req,res){
+    let imagenes = await MySQL.realizarQuery("SELECT imagen FROM Items;");
+    res.send(imagenes)
 });
