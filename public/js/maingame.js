@@ -16,11 +16,15 @@ async function getRandomInt() {
     console.log(imagenes)
     let randomNumber = Math.floor(Math.random() * palabras.length)
     cargarPalabras(randomNumber);
-    console.log(imagenes[randomNumber])
+    let relatedImage = imagenes[randomNumber].imagen
+    console.log(relatedImage)
+    document.body.innerHTML += `<img  id="relatedImage" src='${relatedImage}'>`
 }
 
 
-document.body.innerHTML += '<img  src="${imagenes[randomNumber]}">'
+
+
+
     
 let word;
 let wordArray = []
