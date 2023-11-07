@@ -11,16 +11,25 @@ let imagenes = []
 
 async function getRandomInt() {
     palabras = await fetchPalabras()
-    imagenes = await fetchImagenes()
     console.log(palabras)
-    console.log(imagenes)
     let randomNumber = Math.floor(Math.random() * palabras.length)
     cargarPalabras(randomNumber);
-    console.log(imagenes[randomNumber])
+
+
+    imagenes = await fetchImagenes()
+    let relatedImage = imagenes[randomNumber].imagen
+    //document.body.innerHTML += `<img  id="relatedImage" src='${relatedImage}'>`
+    var img = document.createElement('img'); 
+    img.classList.add('relatedImage')
+    img.src = `${relatedImage}`; 
+    document.body.appendChild(img); 
+    
 }
 
 
-document.body.innerHTML += '<img  src="${imagenes[randomNumber]}">'
+
+
+
     
 let word;
 let wordArray = []
@@ -29,6 +38,7 @@ let actualRow;
 function inicio() {
     getRandomInt()
 }
+
 
 
 function cargarPalabras(random) {
@@ -149,7 +159,7 @@ function existLetter(array1, array2){
 
 function createRow(){
     rowId++
-    if (rowId <= 5) {
+    if (rowId <= 3) {
         let newRow = document.createElement('div');
         newRow.classList.add('row');
         newRow.setAttribute('id', rowId)
