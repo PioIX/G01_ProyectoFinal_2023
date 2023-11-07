@@ -7,14 +7,21 @@ let rowId = 1;
 let palabras = []
 let imagenes = []
 
+
+
 async function getRandomInt() {
     palabras = await fetchPalabras()
+    imagenes = await fetchImagenes()
     console.log(palabras)
-    cargarPalabras( Math.floor(Math.random() * palabras.length));
+    console.log(imagenes)
+    let randomNumber = Math.floor(Math.random() * palabras.length)
+    cargarPalabras(randomNumber);
+    console.log(imagenes[randomNumber])
 }
 
 
-
+document.body.innerHTML += '<img  src="${imagenes[randomNumber]}">'
+    
 let word;
 let wordArray = []
 let actualRow;
