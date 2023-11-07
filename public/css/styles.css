@@ -995,7 +995,7 @@ a{
   font-size: 40px;
 }
 
-#relatedImage{
+.relatedImage{
   height: 20vh;
   width: 14vw;
 }
