@@ -19,7 +19,6 @@ async function getRandomInt() {
 
     imagenes = await fetchImagenes()
     let relatedImage = imagenes[randomNumber].imagen
-    //document.body.innerHTML += `<img  id="relatedImage" src='${relatedImage}'>`
     var img = document.createElement('img'); 
     img.classList.add('relatedImage')
     img.src = `${relatedImage}`; 
@@ -200,9 +199,9 @@ function showResult(textMsg){
 }
 
 async function addPoints(){
-    let actualPoints = MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.body.user}"`)
-    actualPoints+=10
-    await MySQL.realizarQuery(`UPDATE Users SET puntaje = "${actualPoints}" WHERE user = "${req.body.user}"`)
+    puntos = await fetchPuntaje()
+    
+    console.log(puntos)
 }
 
 

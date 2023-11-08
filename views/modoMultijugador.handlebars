@@ -1,19 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpeedCraft - Multijugador</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<header class="tronco">
-  <center><a href="/menu"><img src="img/SpeedCraft.png"  id="imagenHeader"></img></a></center>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=p&display=swap');
-        </style>
+<form action="/modoSolitario" method="RENDER" class="container-sm"></form>
+    <html lang="en">
+    <head>
+        <title>SpeedCraft - Multijugador</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <header class="tronco">
+        <center><a href="/menu"><img src="img/SpeedCraft.png"  id="imagenHeader"></img></a></center>
+            
+            <div class="mb-3 form-group" id="boton_ñordñe_volver">
+                <a href="/elegirmodo" style="color: white">Volver</a>
+            </div>
      
-</header>
-<body background="img/maderita.jpg">
-    
-</body>
-</html>
+    </header>
+    <body background="img/maderita.jpg">
+        <div id="ñordñe123">
+            <main class="main-game-container">
+                <div class="row" id="1">
+                </div>
+            </main>
+
+            <div class="result">
+            </div>
+            
+        </div>
+        <script src="./js/maingame.js"></script>
+    </body>
+
+    </html>
+
+</form>
+<script>
+    inicio()
+</script>

@@ -320,6 +320,14 @@ app.put('/modoSolitario',async function(req,res){
 
 /* PUNTAJE */
 
+app.post('/ranking', async function(req,res){
+    let actualPoints = MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.body.user}"`)
+    actualPoints+=10
+    console.log(actualPoints)
+    await MySQL.realizarQuery(`UPDATE Users SET puntaje = "${actualPoints}" WHERE user = "${req.body.user}"`)
+    res.send(actualPoints)
+})
+
 app.get('/ranking', async function(req,res){
     console.log("Soy un pedido GET /ranking", req.body);
     let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
