@@ -1,3 +1,4 @@
+
 let resultElement = document.querySelector('.result')
 let mainContainer = document.querySelector('.main-game-container')
 let rowId = 1;
@@ -198,11 +199,11 @@ function showResult(textMsg){
     });
 }
 
-/* async function addPoints(){
+async function addPoints(){
     let actualPoints = MySQL.realizarQuery(`SELECT puntaje FROM Usuarios WHERE nombre_usuario = "${req.body.user}"`)
     actualPoints+=10
     await MySQL.realizarQuery(`UPDATE Usuarios SET puntaje = "${actualPoints}" WHERE nombre_usuario = "${req.body.user}"`)
 }
-*/
+
 
 

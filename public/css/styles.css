@@ -981,7 +981,7 @@ a{
   background-color: #c9b458;
 }
 .green{
-  background-color: #6aaa64;
+  background-image: url('/img/texturaDiamante.jpg');
 }
 .red{
   background-color: red;
@@ -996,8 +996,10 @@ a{
 }
 
 .relatedImage{
-  height: 20vh;
-  width: 14vw;
+  height: 23vh;
+  width: 17vw;
+  margin-bottom: 24vh;
+  margin-left: 7vw;
 }
 
 
