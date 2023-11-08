@@ -1002,6 +1002,12 @@ a{
   margin-left: 7vw;
 }
 
+#game-button{
+  font-size: 30px;
+  font-family: 'Minecraft', Arial, Verdana, sans-serif;
+  margin-top: 10vh;
+}
+
 
 /* ------------- PUNTAJE ------------- */
 

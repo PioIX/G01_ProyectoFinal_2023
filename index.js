@@ -317,3 +317,13 @@ app.put('/modoSolitario',async function(req,res){
     let imagenes = await MySQL.realizarQuery("SELECT imagen FROM Items;");
     res.send(imagenes)
 });
+
+/* PUNTAJE */
+
+app.get('/ranking', async function(req,res){
+    console.log("Soy un pedido GET /ranking", req.body);
+    let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
+    tablaPuntaje = tablaPuntaje.splice(0, 5)
+    console.log(tablaPuntaje)
+    res.render('ranking', {pibardos: tablaPuntaje})
+});

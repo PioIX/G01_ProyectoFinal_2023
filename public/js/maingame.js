@@ -96,7 +96,7 @@ function listenInput(actualRow){
                         squares[element].classList.add('grey')
                     })
                     if(rightIndex.length == wordArray.length){
-                        // addPoints()
+                        addPoints()
                         rightIndex.forEach(element => {
                             squares[element].classList.add('green')
                         });
@@ -191,7 +191,7 @@ function addfocus(actualRow){
 function showResult(textMsg){
     resultElement.innerHTML = `
                     <p>${textMsg}</p> 
-                    <button class="button">Reiniciar</button>`
+                    <button id="game-button" class="button">Reiniciar</button>`
 
     let resetBtn = document.querySelector('.button')
     resetBtn.addEventListener('click', ()=>{
@@ -200,9 +200,9 @@ function showResult(textMsg){
 }
 
 async function addPoints(){
-    let actualPoints = MySQL.realizarQuery(`SELECT puntaje FROM Usuarios WHERE nombre_usuario = "${req.body.user}"`)
+    let actualPoints = MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.body.user}"`)
     actualPoints+=10
-    await MySQL.realizarQuery(`UPDATE Usuarios SET puntaje = "${actualPoints}" WHERE nombre_usuario = "${req.body.user}"`)
+    await MySQL.realizarQuery(`UPDATE Users SET puntaje = "${actualPoints}" WHERE user = "${req.body.user}"`)
 }
 
 
