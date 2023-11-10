@@ -180,7 +180,7 @@ socket.on('relog', (data) =>{
                                 ${svg}
                                 <div><p class="user">${data.respuesta[i].user}</p><p style="
                                     font-size: 15px;
-                                    color: #00a884;
+                                    color: greenyellow;
                                 ">Online
                                 </p></div>
                             </div>
@@ -194,7 +194,7 @@ socket.on('relog', (data) =>{
                                 ${svg}
                                 <div><p class="user">${data.respuesta[i].user}</p><p style="
                                     font-size: 15px;
-                                    color: grey;
+                                    color: red;
                                 ">Offline
                                 </p></div>
                             </div>
