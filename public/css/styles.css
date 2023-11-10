@@ -65,9 +65,10 @@ body {
 
 
 #creeperInicio {
-  width: 450px;
-  height: 300px;
-  margin-left: 5vw;
+  width: 500px;
+  height: 350px;
+  margin-left: 4vw;
+  margin-top: 6svh;
   -webkit-user-drag: none;
 }
 
@@ -79,7 +80,7 @@ body {
 
 #textoHome {
   height: 10%;
-  width: 80%;
+  width: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -810,6 +811,16 @@ a{
 
 /* LOGIN */
 
+.left-log-container{
+  width: 21%;
+  height: 100%;
+}
+
+.right-log-container{
+  width: 100%;
+  height: 100%;
+}
+
 .fondoPeruano{
   display: flex;
   height: 100%;
@@ -866,7 +877,7 @@ a{
   padding: 0 35px 10px 5px;
   color: black;
   margin-bottom: 30px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 
@@ -944,6 +955,9 @@ a{
   font-size: 30px;
 }
 
+
+
+
 /* ------------- GAME ------------- */
 
 .main-game-container{
@@ -992,12 +1006,19 @@ a{
 }
 
 #boton_ñordñe_volver{
-  font-size: 40px;
+  margin-top: 2vh;
+  margin-left: 2vw;
+  font-size: 30px;
+  padding: 10px 0 10px 0;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.1s;
 }
 
 .relatedImage{
-  height: 23vh;
-  width: 17vw;
+  height: 25vh;
+  width: 19vw;
   margin-bottom: 24vh;
   margin-left: 7vw;
 }
@@ -1018,4 +1039,16 @@ a{
   margin-left: 400px;
   text-align: center;
   font-size: 32px;
+}
+
+
+/* ------------- GUÍA ------------- */
+
+#modosJuego{
+  margin-left: 5vw;
+}
+
+#main-guide-container{
+  margin-top: 3vh;
+  margin-left: 2vw;
 }

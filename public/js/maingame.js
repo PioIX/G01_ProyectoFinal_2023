@@ -166,7 +166,7 @@ function createRow(){
         mainContainer.appendChild(newRow)
         return newRow;
     }else{
-        showResult(`Mal allá, re perdiste amigo, si fueras piola hubieras sabido q la respuesta era "${word.toUpperCase()}"`)
+        showResult(`Mal allá, re perdiste amigo, si fueras piola hubieras sabido que la respuesta era "${word.toUpperCase()}"`)
     }
     
 }
