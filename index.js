@@ -321,16 +321,19 @@ app.put('/modoSolitario',async function(req,res){
 /* PUNTAJE */
 
 app.post('/ranking', async function(req,res){
-    let actualPoints = MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}"`)
-    actualPoints+=10
-    console.log(actualPoints)
-    await MySQL.realizarQuery(`UPDATE Users SET puntaje = "${actualPoints}" WHERE user = "${req.session.user}"`)
-    res.send(actualPoints)
+    console.log(req.session.user)
+    let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
+    console.log('Tenés: ', actualPoints[0].puntaje)
+    console.log('Tenés: ', actualPoints)
+    actualPoints[0].puntaje+=10
+    await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
+    res.send({puntaje : actualPoints[0].puntaje})
 })
 
 app.get('/ranking', async function(req,res){
     console.log("Soy un pedido GET /ranking", req.body);
-    let top5 = await MySQL.realizarQuery("SELECT * FROM Users ORDER BY puntaje DESC LIMIT 5;")
-    console.log(top5)
-    res.send(top5)
+    let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
+    tablaPuntaje = tablaPuntaje.splice(0, 5)
+    console.log(tablaPuntaje)
+    res.render('ranking', {pibardos: tablaPuntaje})
 });
