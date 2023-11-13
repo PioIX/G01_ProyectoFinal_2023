@@ -318,6 +318,49 @@ app.put('/modoSolitario',async function(req,res){
     res.send(imagenes)
 });
 
+let room = [id_player1, id_player2]
+io.on('connection', (socket) =>{
+    socket.on('add-user', (data) => {
+        socket.broadcast.emit("add-user", data);
+    })
+    socket.on('login-register', (data) => {
+        userOnline[data] = socket;
+    })
+    // Find an available player number
+  let playerIndex = -1;
+  for (var i in connections) {
+    if (connections[i] === null) {
+      playerIndex = i;
+    }
+  }
+  
+  // Tell the connecting client what player number they are
+  socket.emit('player-number', playerIndex);
+  
+  // Ignore player 3
+  if (playerIndex == -1) return;
+  
+  connections[playerIndex] = socket;
+  
+  // Tell everyone else what player number just connected
+  socket.broadcast.emit('player-connect', playerIndex);
+
+  socket.on('actuate', function (data) {
+    const { grid, metadata } = data; // Get grid and metadata properties from client
+    
+    const move = {
+      playerIndex,
+      grid,
+      metadata,
+    };
+    // Emit the move to all other clients
+    socket.broadcast.emit('move', move);
+    });
+    socket.on('disconnect', function() {
+        console.log(`Player ${playerIndex} Disconnected`);
+        connections[playerIndex] = null;
+      });
+})
 /* PUNTAJE */
 
 app.post('/ranking', async function(req,res){

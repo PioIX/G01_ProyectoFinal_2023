@@ -1052,3 +1052,16 @@ a{
   margin-top: 3vh;
   margin-left: 2vw;
 }
+
+/* ------------- MULTIPLAYER ------------- */
+
+.message-container {
+  background: #8e7967;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  margin: 1em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
