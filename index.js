@@ -114,6 +114,9 @@ app.get("/elegirmodo", (req, res) => {
   res.render("elegirmodo");
 });
 
+app.get("/partidas", (req, res) => {
+    res.render("partidas");
+  });
 /* -------------------------- CHAT ----------------------------- */
 
 
@@ -318,6 +321,35 @@ app.put('/modoSolitario',async function(req,res){
     res.send(imagenes)
 });
 
+/* PUNTAJE */
+
+app.post('/ranking', async function(req,res){
+    console.log(req.session.user)
+    let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
+    console.log('Tenés: ', actualPoints[0].puntaje)
+    console.log('Tenés: ', actualPoints)
+    actualPoints[0].puntaje+=10
+    await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
+    res.send({puntaje : actualPoints[0].puntaje})
+})
+
+app.get('/ranking', async function(req,res){
+    console.log("Soy un pedido GET /ranking", req.body);
+    let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
+    tablaPuntaje = tablaPuntaje.splice(0, 5)
+    console.log(tablaPuntaje)
+    res.render('ranking', {pibardos: tablaPuntaje})
+});
+
+app.put('/modoMultijugador', async function(req, res){
+    await MySQL.realizarQuery(`UPDATE Rooms SET idPlayer1 = ${req.user.id} AND idPlayer2 = ${req.user.id}`)
+});
+
+
+/*
+
+// MULTIPLAYER
+
 let room = [id_player1, id_player2]
 io.on('connection', (socket) =>{
     socket.on('add-user', (data) => {
@@ -360,23 +392,11 @@ io.on('connection', (socket) =>{
         console.log(`Player ${playerIndex} Disconnected`);
         connections[playerIndex] = null;
       });
-})
-/* PUNTAJE */
 
-app.post('/ranking', async function(req,res){
-    console.log(req.session.user)
-    let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
-    console.log('Tenés: ', actualPoints[0].puntaje)
-    console.log('Tenés: ', actualPoints)
-    actualPoints[0].puntaje+=10
-    await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
-    res.send({puntaje : actualPoints[0].puntaje})
-})
-
-app.get('/ranking', async function(req,res){
-    console.log("Soy un pedido GET /ranking", req.body);
-    let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
-    tablaPuntaje = tablaPuntaje.splice(0, 5)
-    console.log(tablaPuntaje)
-    res.render('ranking', {pibardos: tablaPuntaje})
+    socket.on('join-room', function(data) {
+        data.nombreSala
+        socket.join("nombre-sala");
+    });
 });
+    
+*/
