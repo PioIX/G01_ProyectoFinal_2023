@@ -266,6 +266,22 @@ body {
   -webkit-user-drag: none;
 }
 
+#cofreTrampa{
+  display: flex;
+  height: 33vh;
+  width: 16vw;
+  margin-left: 5vw;
+  -webkit-user-drag: none;
+}
+
+#ovejaFaso{
+  display: flex;
+  height: 35vh;
+  width: 16vw;
+  margin-left: 10vw;
+  -webkit-user-drag: none;
+}
+
 #solitario{
   margin-top: 15vh;
   margin-bottom: 2vh;
@@ -319,7 +335,14 @@ a{
   width: 5px;  
 }
 
-
+#trivia{
+  margin-top: 15vh;
+  margin-bottom: 2vh;
+  height: 8vh;
+  width: 20vw;
+  -webkit-user-drag: none;
+  margin-left: 7.23vw;
+}
 
 /* CHAT */
 

@@ -114,6 +114,14 @@ app.get("/elegirmodo", (req, res) => {
   res.render("elegirmodo");
 });
 
+app.get("/elegirjuego", (req, res) => {
+    res.render("elegirjuego");
+});
+
+app.get("/trivia", (req, res) => {
+    res.render("trivia");
+ });
+
 /* -------------------------- CHAT ----------------------------- */
 
 
@@ -318,52 +326,9 @@ app.put('/modoSolitario',async function(req,res){
     res.send(imagenes)
 });
 
-let room = [id_player1, id_player2]
-io.on('connection', (socket) =>{
-    socket.on('add-user', (data) => {
-        socket.broadcast.emit("add-user", data);
-    })
-    socket.on('login-register', (data) => {
-        userOnline[data] = socket;
-    })
-    // Find an available player number
-  let playerIndex = -1;
-  for (var i in connections) {
-    if (connections[i] === null) {
-      playerIndex = i;
-    }
-  }
-  
-  // Tell the connecting client what player number they are
-  socket.emit('player-number', playerIndex);
-  
-  // Ignore player 3
-  if (playerIndex == -1) return;
-  
-  connections[playerIndex] = socket;
-  
-  // Tell everyone else what player number just connected
-  socket.broadcast.emit('player-connect', playerIndex);
-
-  socket.on('actuate', function (data) {
-    const { grid, metadata } = data; // Get grid and metadata properties from client
-    
-    const move = {
-      playerIndex,
-      grid,
-      metadata,
-    };
-    // Emit the move to all other clients
-    socket.broadcast.emit('move', move);
-    });
-    socket.on('disconnect', function() {
-        console.log(`Player ${playerIndex} Disconnected`);
-        connections[playerIndex] = null;
-      });
-})
 /* PUNTAJE */
 
-app.post('/ranking', async function(req,res){
+/*app.post('/ranking', async function(req,res){
     console.log(req.session.user)
     let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
     console.log('Tenés: ', actualPoints[0].puntaje)
@@ -371,7 +336,7 @@ app.post('/ranking', async function(req,res){
     actualPoints[0].puntaje+=10
     await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
     res.send({puntaje : actualPoints[0].puntaje})
-})
+})*/
 
 app.get('/ranking', async function(req,res){
     console.log("Soy un pedido GET /ranking", req.body);
@@ -379,4 +344,18 @@ app.get('/ranking', async function(req,res){
     tablaPuntaje = tablaPuntaje.splice(0, 5)
     console.log(tablaPuntaje)
     res.render('ranking', {pibardos: tablaPuntaje})
+});
+
+
+
+/* TRIVIA */
+
+app.post('/trivia', async function(req,res){
+    let preguntas = await MySQL.realizarQuery("SELECT pregunta FROM Trivia;")
+    res.render(preguntas)
+});
+
+app.put('/trivia', async function(req,res){
+    let respuestas = await MySQL.realizarQuery("SSELECT respuesta From Trivia;")
+    res.render(respuestas)
 });
