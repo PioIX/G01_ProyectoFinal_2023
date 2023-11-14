@@ -8,6 +8,8 @@ let rowId = 1;
 let respuestas = []
 let preguntas = []
 
+//palabras = respuestas, imagenes = preguntas
+
 
 
 async function getRandomInt() {
@@ -18,12 +20,21 @@ async function getRandomInt() {
 
 
     preguntas = await fetchPreguntas()
-    let p = preguntas[randomNumber].pregunta
-    var img = document.createElement('p'); 
-    img.classList.add('preguntaTrivia')
-    img.src = `${preguntaTrivia}`; 
-    document.body.appendChild(p); 
+    let relatedQuestion = preguntas[randomNumber].pregunta
+
+    var p = document.createElement('p'); 
+    var question = document.createTextNode(relatedQuestion);
+    p.appendChild(question);
+    p.classList.add('relatedQuestion')
+    document.getElementById("question-container").appendChild(p); 
     
+    /*
+    const para = document.createElement("p");
+    const node = document.createTextNode("This is a paragraph.");
+
+    para.appendChild(node);
+    document.getElementById("myDIV").appendChild(para);
+    */
 }
 
 
@@ -99,7 +110,7 @@ function listenInput(actualRow){
                         rightIndex.forEach(element => {
                             squares[element].classList.add('green')
                         });
-                        showResult(`Correcto, era un/a "${word.toUpperCase()}"`)
+                        showResult(`Correcto, era "${word.toUpperCase()}"`)
                         return;
                     }
                

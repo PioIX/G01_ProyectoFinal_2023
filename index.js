@@ -352,10 +352,10 @@ app.get('/ranking', async function(req,res){
 
 app.post('/trivia', async function(req,res){
     let preguntas = await MySQL.realizarQuery("SELECT pregunta FROM Trivia;")
-    res.render(preguntas)
+    res.send(preguntas)
 });
 
 app.put('/trivia', async function(req,res){
-    let respuestas = await MySQL.realizarQuery("SSELECT respuesta From Trivia;")
-    res.render(respuestas)
+    let respuestas = await MySQL.realizarQuery("SELECT respuesta FROM Trivia;")
+    res.send(respuestas)
 });

@@ -1024,6 +1024,11 @@ a{
   background-color: red;
 }
 
+.luckyBlock{
+  background-image: url('/img/luckyBlock.webp');
+}
+
+
 #ñordñe123{
   margin-top: 20vh;
 }
@@ -1088,3 +1093,13 @@ a{
   font-size: 1.2em;
 }
 
+
+
+/* ------------- TRIVIA ------------- */
+
+.relatedQuestion{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  margin-top: 10vh;
+}
