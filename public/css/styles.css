@@ -63,6 +63,18 @@ body {
   height: 10vh;
 }
 
+.lanaRoja{
+  background-image: url('/img/lanaRoja.jpg');
+  background-size: 15vh;
+  height: 10vh;
+}
+
+.hojas{
+  background-image: url('/img/hojas.png');
+  background-size: 15vh;
+  height: 10vh;
+}
+
 
 #creeperInicio {
   width: 500px;
@@ -266,6 +278,22 @@ body {
   -webkit-user-drag: none;
 }
 
+#cofreTrampa{
+  display: flex;
+  height: 33vh;
+  width: 16vw;
+  margin-left: 5vw;
+  -webkit-user-drag: none;
+}
+
+#ovejaFaso{
+  display: flex;
+  height: 35vh;
+  width: 16vw;
+  margin-left: 10vw;
+  -webkit-user-drag: none;
+}
+
 #solitario{
   margin-top: 15vh;
   margin-bottom: 2vh;
@@ -319,7 +347,14 @@ a{
   width: 5px;  
 }
 
-
+#trivia{
+  margin-top: 15vh;
+  margin-bottom: 2vh;
+  height: 8vh;
+  width: 20vw;
+  -webkit-user-drag: none;
+  margin-left: 7.23vw;
+}
 
 /* CHAT */
 
@@ -1001,6 +1036,11 @@ a{
   background-color: red;
 }
 
+.luckyBlock{
+  background-image: url('/img/luckyBlock.webp');
+}
+
+
 #ñordñe123{
   margin-top: 20vh;
 }
@@ -1065,3 +1105,13 @@ a{
   font-size: 1.2em;
 }
 
+
+
+/* ------------- TRIVIA ------------- */
+
+.relatedQuestion{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  margin-top: 10vh;
+}
