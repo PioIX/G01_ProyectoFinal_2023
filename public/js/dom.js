@@ -87,3 +87,21 @@ async function fetchRespuestas() {
     console.error("Error:", error);
   }
 }
+
+async function fetchLeaderboard() {    
+  try {
+    const response = await fetch("/leaderboard", {
+      method: 'POST', // or 'PUT', 
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    const result = await response.json();
+  
+    return result
+   
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}

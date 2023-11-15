@@ -120,7 +120,15 @@ app.get("/elegirjuego", (req, res) => {
 
 app.get("/trivia", (req, res) => {
     res.render("trivia");
- });
+});
+
+app.get("/leaderboard", (req, res) => {
+    res.render("leaderboard");
+});
+
+app.get("/admin", (req, res) => {
+    res.render("admin");
+});
 
 /* -------------------------- CHAT ----------------------------- */
 
@@ -157,18 +165,23 @@ io.on('connection', (socket) =>{
 })
 
 app.get('/', async function(req, res){
-   // let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = 10`);
     res.render('login', null);
 });
 
 app.post('/login', async function(req,res){
     let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users WHERE user = "${req.body.username}" AND password = "${req.body.password}"; `);
-    if (respuesta.length > 0){
-        req.session.user = req.body.username;
-        res.send({status: true})
-    } else {
-        res.send({status: false})
+    if (req.body.username=='admin', req.body.password=='1717'){
+        res.send({status:'admin'})
     }
+    else{
+        if (respuesta.length > 0){
+            req.session.user = req.body.username;
+            res.send({status: true})
+        } else {
+            res.send({status: false})
+        }
+    }
+
 })
 
 app.post('/register', async function(req, res){
@@ -328,7 +341,7 @@ app.put('/modoSolitario',async function(req,res){
 
 /* PUNTAJE */
 
-/*app.post('/ranking', async function(req,res){
+app.post('/ranking', async function(req,res){
     console.log(req.session.user)
     let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
     console.log('Tenés: ', actualPoints[0].puntaje)
@@ -336,16 +349,7 @@ app.put('/modoSolitario',async function(req,res){
     actualPoints[0].puntaje+=10
     await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
     res.send({puntaje : actualPoints[0].puntaje})
-})*/
-
-app.get('/ranking', async function(req,res){
-    console.log("Soy un pedido GET /ranking", req.body);
-    let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
-    tablaPuntaje = tablaPuntaje.splice(0, 5)
-    console.log(tablaPuntaje)
-    res.render('ranking', {pibardos: tablaPuntaje})
 });
-
 
 
 /* TRIVIA */
@@ -358,4 +362,11 @@ app.post('/trivia', async function(req,res){
 app.put('/trivia', async function(req,res){
     let respuestas = await MySQL.realizarQuery("SELECT respuesta FROM Trivia;")
     res.send(respuestas)
+});
+
+/* LEADERBOARD */
+
+app.post('/leaderboard', async function(req,res){
+    let leaders = await MySQL.realizarQuery("SELECT nombre, puntaje From Users ORDER BY puntaje DESC LIMIT 5;")
+    res.send(leaders)
 });
