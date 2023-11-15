@@ -118,6 +118,7 @@ app.get("/partidas", async (req, res) => {
     let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
     res.render("partidas", {room: rooms});
   });
+
 /* -------------------------- CHAT ----------------------------- */
 
 
@@ -346,19 +347,47 @@ app.put('/modoMultijugador', async function(req, res){
     await MySQL.realizarQuery(`UPDATE Rooms SET idPlayer1 = ${req.user.id} AND idPlayer2 = ${req.user.id}`)
 });
 
+
 io.on('connection', (socket) =>{
     socket.on('join-room', async (data)=>{
         socket.join(data)
-        let longitud = await MySQL.realizarQuery(SELECT PLAYER 2)
+        let longitud = await MySQL.realizarQuery(/* SELECT PLAYER 2 PARA VER SI HAY ESPACIO*/)
     })
 })
 
+
+
+
+
+
+
+app.put('/partidas', async function(req, res){
+    console.log(rooms)
+})
+app.get("/espera", async(req, res) =>{
+    let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
+    res.render('espera', {room: rooms})
+})
+
+
 /*
+
+let rooms = [{room1: ["Pep"]}]
+    
+}
 
 // MULTIPLAYER
 
 let room = [id_player1, id_player2]
 io.on('connection', (socket) =>{
+    socket.on('room', (data)=>{
+        socket.join(data)
+        if(rooms[rooms.length-1].room.length == 2){
+            io.to(data).emit('start')
+        }
+        io.to(socket.id).emit('confirm-room')
+    })
+    
     socket.on('add-user', (data) => {
         socket.broadcast.emit("add-user", data);
     })
