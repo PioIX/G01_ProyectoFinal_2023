@@ -74,6 +74,11 @@ body {
   background-size: 15vh;
   height: 10vh;
 }
+.arena{
+  background-image: url('/img/arena.png');
+  background-size: 15vh;
+  height: 10vh;
+}
 
 
 #creeperInicio {
@@ -1114,4 +1119,31 @@ a{
   justify-content: center;
   font-size: 40px;
   margin-top: 10vh;
+}
+
+/* ------------- ADMIN ------------- */
+
+#bienvenidoAdministrador{
+  font-size: 45px;
+  margin-top: 1vh;
+  margin-bottom: 10vh;
+}
+
+#container-admin1{
+  margin-top: 8vh;
+}
+
+#container-admin2{
+  margin-top: 8vh;
+}
+
+/* API */
+
+.reloj{
+  position:absolute;
+  left: calc(50% - 300px);
+  top: calc(50% - 300px);
+  width: 600px;
+  height: 600px;
+
 }

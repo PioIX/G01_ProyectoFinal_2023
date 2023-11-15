@@ -130,6 +130,10 @@ app.get("/admin", (req, res) => {
     res.render("admin");
 });
 
+app.get("/reloj", (req, res) => {
+    res.render("reloj");
+});
+
 /* -------------------------- CHAT ----------------------------- */
 
 
@@ -369,4 +373,11 @@ app.put('/trivia', async function(req,res){
 app.post('/leaderboard', async function(req,res){
     let leaders = await MySQL.realizarQuery("SELECT nombre, puntaje From Users ORDER BY puntaje DESC LIMIT 5;")
     res.send(leaders)
+});
+
+/* ADMIN */
+
+app.put('/admin', async function(req,res){
+    let respuestas = await MySQL.realizarQuery("SELECT respuesta FROM Trivia;")
+    res.send(respuestas)
 });
