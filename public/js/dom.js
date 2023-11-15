@@ -72,6 +72,7 @@ async function fetchMultiplayer() {
 }
 
 function joinRoom(data){
+  console.log(data)
   socket.emit('join-room', data)
 }
 

@@ -351,14 +351,10 @@ app.put('/modoMultijugador', async function(req, res){
 io.on('connection', (socket) =>{
     socket.on('join-room', async (data)=>{
         socket.join(data)
-        let longitud = await MySQL.realizarQuery(/* SELECT PLAYER 2 PARA VER SI HAY ESPACIO*/)
+        let longitud = await MySQL.realizarQuery(` SELECT idPlayer2 FROM Rooms WHERE idPlayer1 != "NULL" `)
+        console.log(longitud)
     })
 })
-
-
-
-
-
 
 
 app.put('/partidas', async function(req, res){

@@ -1,8 +1,3 @@
-
-
-
-    socket.join("some room");
-    //esto es de multiplayer
     let resultElement = document.querySelector('.result')
     let mainContainer = document.querySelector('.main-game-container')
     let rowId = 1;
