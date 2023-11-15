@@ -114,8 +114,9 @@ app.get("/elegirmodo", (req, res) => {
   res.render("elegirmodo");
 });
 
-app.get("/partidas", (req, res) => {
-    res.render("partidas");
+app.get("/partidas", async (req, res) => {
+    let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
+    res.render("partidas", {room: rooms});
   });
 /* -------------------------- CHAT ----------------------------- */
 
@@ -345,6 +346,12 @@ app.put('/modoMultijugador', async function(req, res){
     await MySQL.realizarQuery(`UPDATE Rooms SET idPlayer1 = ${req.user.id} AND idPlayer2 = ${req.user.id}`)
 });
 
+io.on('connection', (socket) =>{
+    socket.on('join-room', async (data)=>{
+        socket.join(data)
+        let longitud = await MySQL.realizarQuery(SELECT PLAYER 2)
+    })
+})
 
 /*
 

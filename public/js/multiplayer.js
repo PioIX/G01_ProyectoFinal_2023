@@ -1,6 +1,6 @@
 
 
-io.on("connection", socket => {
+
     socket.join("some room");
     //esto es de multiplayer
     let resultElement = document.querySelector('.result')
@@ -217,5 +217,3 @@ io.on("connection", socket => {
         
         console.log(puntos)
     }
-
-});

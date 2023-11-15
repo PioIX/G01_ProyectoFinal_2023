@@ -1,3 +1,4 @@
+const socket = io()
 async function fetchPalabras() {    
   try {
     const response = await fetch("/modoSolitario", {
@@ -68,4 +69,8 @@ async function fetchPuntaje() {
   } catch (error) {
     console.error("Error:", error);
   }
+}
+
+function joinRoom(data){
+  socket.emit('join-room', data)
 }
