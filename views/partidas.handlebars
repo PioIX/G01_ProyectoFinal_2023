@@ -21,14 +21,14 @@
 
 
 
-         <div id="rooms-container" class="container-rooms">
+         <center><div id="rooms-container" class="container-rooms">
         {{#each room}}
                 <div onclick="joinRoom('{{this.name}}')" class="rooms">
                     <div style="display: flex;">
-                        <div><p class="rooms" href="/espera">{{this.name}}</p></div>
+                        <div><a class="rooms" href="/espera" style="color: white" >{{this.name}}</a></div>
                     </div>
                 </div>
-        {{/each}}
+        {{/each}}</center>
 
 
 
@@ -38,7 +38,7 @@
 
 
         <div id="partidas"> 
-            <a class="Minecraft" href="/Salaespera" style="color: white"></a>
+            <center><a class="Minecraft" href="/espera" style="color: white">ayuda</a></center>
         </div>
 
 

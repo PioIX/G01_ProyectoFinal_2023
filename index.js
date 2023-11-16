@@ -343,28 +343,36 @@ app.get('/ranking', async function(req,res){
     res.render('ranking', {pibardos: tablaPuntaje})
 });
 
-app.put('/modoMultijugador', async function(req, res){
-    await MySQL.realizarQuery(`UPDATE Rooms SET idPlayer1 = ${req.user.id} AND idPlayer2 = ${req.user.id}`)
-});
-
-
 io.on('connection', (socket) =>{
     socket.on('join-room', async (data)=>{
         socket.join(data)
         let longitud = await MySQL.realizarQuery(` SELECT idPlayer2 FROM Rooms WHERE idPlayer1 != "NULL" `)
         console.log(longitud)
+        if(rooms[rooms.length-1].room.length == 2){
+            io.to(data).emit('start')
+            fetchSala()
+            changeScreen()
+        }
     })
+    socket.on('disconect', () => {
+        console.log("desconectado")
+    })
+    
 })
-
 
 app.put('/partidas', async function(req, res){
     console.log(rooms)
+    await MySQL.realizarQuery(`UPDATE Rooms SET idPlayer1 = ${req.user.id} AND idPlayer2 = ${req.user.id}`)
 })
+
 app.get("/espera", async(req, res) =>{
     let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
     res.render('espera', {room: rooms})
-})
+});
 
+app.get("/modoMultijugador", (req,res) =>{
+    res.render('modoMultijugador', null)
+})
 
 /*
 

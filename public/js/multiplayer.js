@@ -212,3 +212,5 @@
         
         console.log(puntos)
     }
+
+    
