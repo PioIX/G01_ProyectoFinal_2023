@@ -1,4 +1,4 @@
-<form action="/ranking" method="RENDER" class="container-sm" id="index">
+<form action="/leaderboard" method="RENDER" class="container-sm" id="index">
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,29 +17,13 @@
             
     </header>
     <body background="img/fondoPiedra.jpg">
-    <div class="mb-3 form-group" id="reglas">
-        <center><h2 id="tituloReglas">Puntaje</h2></center>
-        <div id="tablaPuntaje">
-            <table class="table caption-top">
-            <thead>
-                <tr>
-                <th scope="col">Usuario</th>
-                <th scope="col">Puntaje</th>
-                </tr>
-            </thead>
-            <tbody>
-                  {{#each pibardos}}
-                <tr>
-                <td>{{user}}</td>
-                <td>{{puntaje}}</td>
-                </tr>
-                 {{/each}}
-            </tbody>
-            </table>
+        <div class="top-container">
+
         </div>
-    </div>
+    <script src="./js/ranking.js"></script>
     </body>
 </form>
-<script src="./js/ranking.js">
-    showLeaders()
+<script>
+    inicio()
 </script>
+
