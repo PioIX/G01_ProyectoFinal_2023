@@ -371,8 +371,8 @@ app.put('/trivia', async function(req,res){
 /* LEADERBOARD */
 
 app.post('/leaderboard', async function(req,res){
-    let leaders = await MySQL.realizarQuery("SELECT nombre, puntaje From Users ORDER BY puntaje DESC LIMIT 5;")
-    res.send(leaders)
+    let top5 = await MySQL.realizarQuery("SELECT * From Users ORDER BY puntaje DESC LIMIT 5;")
+    res.send(top5)
 });
 
 /* ADMIN */

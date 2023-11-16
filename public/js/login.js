@@ -31,7 +31,7 @@ async function fetchUsers(data){
             socket.emit('login-register', user.value);
             location.href="/home";
         }
-        else if(result.status == true){
+        else if(result.status == false){
             alert("La contraseña/usuario no son correctos");
         }
         else{
