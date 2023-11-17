@@ -305,6 +305,10 @@ body {
   -webkit-user-drag: none;
 }
 
+#mob123{
+  margin-left: 4vw;
+}
+
 #imagenAlex{
   display: flex;
   height: 44vh;
@@ -1216,4 +1220,10 @@ a{
   width: 500px;
   height: 500px;
 
+}
+
+/* */
+
+#boton2323{
+  font-family: 'Minecraft', Arial, Verdana, sans-serif;
 }
