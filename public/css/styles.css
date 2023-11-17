@@ -300,16 +300,16 @@ body {
 #imagenSteve{
   display: flex;
   height: 40vh;
-  width: 16vw;
-  margin-left: 50px;
+  width: 13vw;
+  margin-left: 80px;
   -webkit-user-drag: none;
 }
 
 #imagenAlex{
   display: flex;
-  height: 40vh;
-  width: 23vw;
-  margin-left: 60px;
+  height: 44vh;
+  width: 28vw;
+  margin-left: 65px;
   -webkit-user-drag: none;
 }
 
@@ -339,8 +339,9 @@ body {
 #multijugador{
   margin-top: 15vh;
   margin-bottom: 2vh;
+  margin-left: 11vw;
   height: 8vh;
-  width: 35vw;
+  width: 15vw;
   -webkit-user-drag: none;
 }
 
@@ -1121,7 +1122,16 @@ a{
   transition: 0.1s;
 }
 
+.relatedMobImage{
+  display: flex;
+  height: 200px;
+  width: 200px;
+  margin-bottom: 24vh;
+  margin-left: 7vw;
+}
+
 .relatedImage{
+  display: flex;
   height: 25vh;
   width: 19vw;
   margin-bottom: 24vh;
@@ -1201,9 +1211,9 @@ a{
 
 .reloj{
   position:absolute;
-  left: calc(50% - 300px);
-  top: calc(50% - 300px);
-  width: 600px;
-  height: 600px;
+  left: calc(50% - 250px);
+  top: calc(50% - 250px);
+  width: 500px;
+  height: 500px;
 
 }

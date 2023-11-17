@@ -134,6 +134,11 @@ app.get("/reloj", (req, res) => {
     res.render("reloj");
 });
 
+app.get("/mobs", (req, res) => {
+    res.render("mobs");
+});
+
+
 /* -------------------------- CHAT ----------------------------- */
 
 
@@ -342,6 +347,18 @@ app.put('/modoSolitario',async function(req,res){
     let imagenes = await MySQL.realizarQuery("SELECT imagen FROM Items;");
     res.send(imagenes)
 });
+
+/* MOBS */
+
+app.post('/mobs',async function(req,res){
+    let mobPalabras = await MySQL.realizarQuery("SELECT nombre_mob FROM Mobs;");
+    res.send(mobPalabras)
+});
+
+app.put('/mobs',async function(req,res){
+    let mobImagenes = await MySQL.realizarQuery("SELECT imagen FROM Mobs;");
+    res.send(mobImagenes)
+}); 
 
 /* PUNTAJE */
 

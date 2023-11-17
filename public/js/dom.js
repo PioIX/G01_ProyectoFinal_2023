@@ -105,3 +105,39 @@ async function fetchLeaderboard() {
     console.error("Error:", error);
   }
 }
+
+async function fetchMobPalabras() {    
+  try {
+    const response = await fetch("/mobs", {
+      method: 'POST', // or 'PUT', 
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    const result = await response.json();
+  
+    return result
+   
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function fetchMobImagenes() {    
+  try {
+    const response = await fetch("/mobs", {
+      method: 'PUT', 
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    const result = await response.json();
+  
+    return result
+   
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
