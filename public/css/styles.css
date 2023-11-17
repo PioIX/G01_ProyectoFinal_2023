@@ -278,22 +278,23 @@ body {
 #ghastLogin{
   height: 440px;
   width: 400px;
-  margin-left: 30vw;
-  margin-right: 10vh;
+  margin-left: 20vw;
+  margin-right: 9vh;
   -webkit-user-drag: none;
   flex-grow:1;
   position: fixed;
-  margin-top: -150px;
+  margin-top: -250px;
 }
 
 #magmaRegistro{
-  height: 430px;
-  width: 180px;
-  margin-left: 30vw;
-  margin-right: 10vh;
+  height: 540px;
+  width: 300px;
+  margin-left: 40vw;
+  margin-right: 9vh;
   -webkit-user-drag: none;
-  flex-grow:1;
+  flex-grow: 1;
   position: fixed;
+  margin-top: -500px;
 }
 
 #imagenSteve{
@@ -884,6 +885,27 @@ a{
 .container-register{
   margin-left: 20vw;
   margin-top: 5vh;
+}
+
+#register-container{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
+#name{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
+#passconfirm{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
 }
 
 /* LOGIN */
