@@ -1,4 +1,3 @@
-const socket = io()
 async function fetchPalabras() {    
   try {
     const response = await fetch("/modoSolitario", {
@@ -53,9 +52,9 @@ async function fetchPuntaje() {
   }
 }
 
-async function fetchMultiplayer() {    
+async function fetchPreguntas() {    
   try {
-    const response = await fetch("/modoMultijugador", {
+    const response = await fetch("/trivia", {
       method: 'POST', // or 'PUT', 
       headers: {
         "Content-Type": "application/json",
@@ -71,39 +70,27 @@ async function fetchMultiplayer() {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function fetchSala() {    
+async function fetchRespuestas() {    
   try {
-    const response = await fetch("/espera", {
+    const response = await fetch("/trivia", {
+      method: 'PUT', // or 'PUT', 
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    const result = await response.json();
+  
+    return result
+   
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function fetchLeaderboard() {    
+  try {
+    const response = await fetch("/leaderboard", {
       method: 'POST', // or 'PUT', 
       headers: {
         "Content-Type": "application/json",
@@ -119,11 +106,9 @@ async function fetchSala() {
   }
 }
 
-
-
-async function fetchPartidas() {    
+async function fetchMobPalabras() {    
   try {
-    const response = await fetch("/partidas", {
+    const response = await fetch("/mobs", {
       method: 'POST', // or 'PUT', 
       headers: {
         "Content-Type": "application/json",
@@ -139,7 +124,20 @@ async function fetchPartidas() {
   }
 }
 
-
-function changeScreen(){
-  location.href="/modoMultijugador"
+async function fetchMobImagenes() {    
+  try {
+    const response = await fetch("/mobs", {
+      method: 'PUT', 
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    const result = await response.json();
+  
+    return result
+   
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
