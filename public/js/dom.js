@@ -1,3 +1,4 @@
+const socket = io()
 async function fetchPalabras() {    
   try {
     const response = await fetch("/modoSolitario", {
