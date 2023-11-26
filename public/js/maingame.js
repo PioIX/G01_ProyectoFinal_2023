@@ -167,7 +167,7 @@ function createRow(){
         mainContainer.appendChild(newRow)
         return newRow;
     }else{
-        showResult(`Mal allá, re perdiste amigo, si fueras piola hubieras sabido que la respuesta era "${word.toUpperCase()}"`)
+        showResult(`Casi, la respuesta correcta era "${word.toUpperCase()}"`)
     }
     
 }
@@ -191,7 +191,7 @@ function addfocus(actualRow){
 function showResult(textMsg){
     resultElement.innerHTML = `
                     <p>${textMsg}</p> 
-                    <button id="game-button" class="button">Reiniciar</button>`
+                    <button id="game-button" class="button"><p style="color: black;">Reiniciar</p></button>`
 
     let resetBtn = document.querySelector('.button')
     resetBtn.addEventListener('click', ()=>{

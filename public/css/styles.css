@@ -51,14 +51,31 @@ body {
   height: 10vh;
 }
 
-.alfombra{
-  background-image: url('/img/fondoRanking.jpg');
-  background-size: 28vh;
+.cryObsidian{
+  background-image: url('/img/cryingObsidian.jpeg');
+  background-size: 32vh;
   height: 10vh;
 }
 
 .tronco{
   background-image: url('/img/fondoTronco.jpg');
+  background-size: 15vh;
+  height: 10vh;
+}
+
+.lanaRoja{
+  background-image: url('/img/lanaRoja.jpg');
+  background-size: 15vh;
+  height: 10vh;
+}
+
+.hojas{
+  background-image: url('/img/hojas.png');
+  background-size: 15vh;
+  height: 10vh;
+}
+.arena{
+  background-image: url('/img/arena.png');
   background-size: 15vh;
   height: 10vh;
 }
@@ -126,9 +143,31 @@ body {
   font-size: 20px;
 }
 
+#div-login{
+  display: flex;
+  width: 100vh;
+  justify-content: flex-start;
+}
+
+#user{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
+#pass{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
 #noTenes{
   margin-top: 120px;
   font-size: 20px;
+  letter-spacing: 2px;
+  padding: 0;
 }
 
 #Kuma{
@@ -237,32 +276,60 @@ body {
 }
 
 #ghastLogin{
-  height: 340px;
-  width: 300px;
+  height: 440px;
+  width: 400px;
   margin-left: 20vw;
+  margin-right: 9vh;
   -webkit-user-drag: none;
+  flex-grow:1;
+  position: fixed;
+  margin-top: -250px;
 }
 
 #magmaRegistro{
-  height: 430px;
-  width: 180px;
-  margin-left: 20vw;
+  height: 540px;
+  width: 300px;
+  margin-left: 40vw;
+  margin-right: 9vh;
   -webkit-user-drag: none;
+  flex-grow: 1;
+  position: fixed;
+  margin-top: -500px;
 }
 
 #imagenSteve{
   display: flex;
   height: 40vh;
-  width: 16vw;
-  margin-left: 50px;
+  width: 13vw;
+  margin-left: 80px;
   -webkit-user-drag: none;
+}
+
+#mob123{
+  margin-left: 4vw;
 }
 
 #imagenAlex{
   display: flex;
-  height: 40vh;
-  width: 23vw;
-  margin-left: 60px;
+  height: 44vh;
+  width: 28vw;
+  margin-left: 65px;
+  -webkit-user-drag: none;
+}
+
+#cofreTrampa{
+  display: flex;
+  height: 33vh;
+  width: 16vw;
+  margin-left: 5vw;
+  -webkit-user-drag: none;
+}
+
+#ovejaFaso{
+  display: flex;
+  height: 35vh;
+  width: 16vw;
+  margin-left: 10vw;
   -webkit-user-drag: none;
 }
 
@@ -276,8 +343,9 @@ body {
 #multijugador{
   margin-top: 15vh;
   margin-bottom: 2vh;
+  margin-left: 11vw;
   height: 8vh;
-  width: 35vw;
+  width: 15vw;
   -webkit-user-drag: none;
 }
 
@@ -319,7 +387,14 @@ a{
   width: 5px;  
 }
 
-
+#trivia{
+  margin-top: 15vh;
+  margin-bottom: 2vh;
+  height: 8vh;
+  width: 20vw;
+  -webkit-user-drag: none;
+  margin-left: 7.23vw;
+}
 
 /* CHAT */
 
@@ -474,10 +549,18 @@ a{
 .btn{
   border-radius: 100%;
   font-size: 30px;
-  padding: 5px;
   border: none;
   cursor: pointer;
   color: black;
+  padding: 70%;
+  -webkit-border-radius: 4;
+  -moz-border-radius: 4;
+  text-shadow: 1px 1px 15px;
+  padding: 30px 40px;
+  border: solid 1px;
+  text-decoration: none;
+  width: 100%;
+  height: 10%;
 }
 
 .chat{
@@ -809,6 +892,27 @@ a{
   margin-top: 5vh;
 }
 
+#register-container{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
+#name{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
+#passconfirm{
+  border-radius: 20px;
+  display: flex;
+  width: auto;
+  padding: 12px;
+}
+
 /* LOGIN */
 
 .left-log-container{
@@ -852,9 +956,10 @@ a{
   text-align: left;
 }
 
-.container-login{
-  margin-left: 20vw;
-  margin-top: 5vh;
+.container-input-login{
+  text-align: center;
+  margin-top: 10vh;
+  margin-left: 70vh;
 }
 
 
@@ -1001,6 +1106,11 @@ a{
   background-color: red;
 }
 
+.luckyBlock{
+  background-image: url('/img/luckyBlock.webp');
+}
+
+
 #ñordñe123{
   margin-top: 20vh;
 }
@@ -1016,7 +1126,16 @@ a{
   transition: 0.1s;
 }
 
+.relatedMobImage{
+  display: flex;
+  height: 200px;
+  width: 200px;
+  margin-bottom: 24vh;
+  margin-left: 7vw;
+}
+
 .relatedImage{
+  display: flex;
   height: 25vh;
   width: 19vw;
   margin-bottom: 24vh;
@@ -1065,8 +1184,55 @@ a{
   font-size: 1.2em;
 }
 
+
 .rooms {
   text-align: center;
   display: flex;
   align-items: center;
 }
+
+
+
+/* ------------- TRIVIA ------------- */
+
+.relatedQuestion{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  margin-top: 10vh;
+}
+
+/* ------------- ADMIN ------------- */
+
+#bienvenidoAdministrador{
+  font-size: 45px;
+  margin-top: 1vh;
+  margin-bottom: 10vh;
+}
+
+#container-admin1{
+  margin-top: 8vh;
+}
+
+#container-admin2{
+  margin-top: 8vh;
+}
+
+/* API */
+
+.reloj{
+  position:absolute;
+  left: calc(50% - 250px);
+  top: calc(50% - 250px);
+  width: 500px;
+  height: 500px;
+
+}
+
+/* */
+
+#boton2323{
+  font-family: 'Minecraft', Arial, Verdana, sans-serif;
+  margin-top: 80px;
+}
+

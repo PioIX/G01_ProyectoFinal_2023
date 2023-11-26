@@ -11,8 +11,12 @@
     <title>SpeedCraft - Home</title>
   </head>
 
-  <body background="img/dirt-background.webp">
-    {{> header this}}
+  <body onLoad="mueveReloj()" background="img/dirt-background.webp">
+    <header class="header">
+      <center><a href="/menu"><img src="img/SpeedCraft.png"  id="imagenHeader"></img></a></center>
+  
+      
+    </header>
     <div class="container">
 
       <div class="mb-3 form-group">
@@ -21,20 +25,26 @@
         </center>
         <div id="textoHome">
           <center>
-            <p class="Minecraft" id="textoHome">Speedcraft es un juego en solitario o multijugador en el que debes adivinar el nombre del item recibido tras la realización de ciertos crafteos proporcionados. </p><br><br>
+            <p id="textoHome">Toca el logo de SpeedCraft para acceder al menu</p>
+            <p id="textoHome">¡Pulsa "Jugar" y embarcate en una aventura sobre Minecraft! "Trivia" o "Adivina el crafteo", ¡es tu eleccion! </p><br><br>
             <p id="textoHome">Conseguiras 10 puntos cada vez que ganes una ronda.</p><br><br>
-            <p id="textoHome">¡Intenta alcanzar el top!</p>
+            <p id="textoHome">¡Intenta alcanzar el top!</p> <br><br>
+            <a href="/reloj"><p id="textoHome">¿Queres saber la hora actual?</p></a>
           </center>
           <img id="creeperInicio" src="img/creeperInicio.png">
         </div>
         <div id="eleccion">
-          <center><a href="/elegirmodo"><img src="img/jugar2.png"  id="botonJugarMenu"></img></a></center>
+          <center><a href="/elegirjuego"><img src="img/jugar2.png"  id="botonJugarMenu"></img></a></center>
         </div>
+
+
       </div>
+      
     
   </body>
   
     
-
+  <script src="./js/reloj.js">
+  </script>
   </div>
 </section>

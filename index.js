@@ -118,6 +118,30 @@ app.get("/partidas", async (req, res) => {
     let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
     res.render("partidas", {room: rooms});
   });
+app.get("/elegirjuego", (req, res) => {
+    res.render("elegirjuego");
+});
+
+app.get("/trivia", (req, res) => {
+    res.render("trivia");
+});
+
+app.get("/leaderboard", (req, res) => {
+    res.render("leaderboard");
+});
+
+app.get("/admin", (req, res) => {
+    res.render("admin");
+});
+
+app.get("/reloj", (req, res) => {
+    res.render("reloj");
+});
+
+app.get("/mobs", (req, res) => {
+    res.render("mobs");
+});
+
 
 /* -------------------------- CHAT ----------------------------- */
 
@@ -186,12 +210,18 @@ app.get('/', async function(req, res){
 
 app.post('/login', async function(req,res){
     let respuesta = await MySQL.realizarQuery(`SELECT * FROM Users WHERE user = "${req.body.username}" AND password = "${req.body.password}"; `);
-    if (respuesta.length > 0){
-        req.session.user = req.body.username;
-        res.send({status: true})
-    } else {
-        res.send({status: false})
+    if (req.body.username=='admin', req.body.password=='1717'){
+        res.send({status:'admin'})
     }
+    else{
+        if (respuesta.length > 0){
+            req.session.user = req.body.username;
+            res.send({status: true})
+        } else {
+            res.send({status: false})
+        }
+    }
+
 })
 
 app.post('/register', async function(req, res){
@@ -349,6 +379,7 @@ app.put('/modoSolitario',async function(req,res){
     res.send(imagenes)
 });
 
+
 /* PUNTAJE */
 
 app.post('/ranking', async function(req,res){
@@ -466,3 +497,44 @@ io.on('connection', (socket) =>{
 });
     
 */
+
+/* MOBS */
+
+app.post('/mobs',async function(req,res){
+    let mobPalabras = await MySQL.realizarQuery("SELECT nombre_mob FROM Mobs;");
+    res.send(mobPalabras)
+});
+
+app.put('/mobs',async function(req,res){
+    let mobImagenes = await MySQL.realizarQuery("SELECT imagen FROM Mobs;");
+    res.send(mobImagenes)
+}); 
+
+/* PUNTAJE */
+
+/* TRIVIA */
+
+app.post('/trivia', async function(req,res){
+    let preguntas = await MySQL.realizarQuery("SELECT pregunta FROM Trivia;")
+    res.send(preguntas)
+});
+
+app.put('/trivia', async function(req,res){
+    let respuestas = await MySQL.realizarQuery("SELECT respuesta FROM Trivia;")
+    res.send(respuestas)
+});
+
+/* LEADERBOARD */
+
+app.post('/leaderboard', async function(req,res){
+    let top5 = await MySQL.realizarQuery("SELECT * From Users ORDER BY puntaje DESC LIMIT 5;")
+    res.send(top5)
+});
+
+/* ADMIN */
+
+app.put('/admin', async function(req,res){
+    let respuestas = await MySQL.realizarQuery("SELECT respuesta FROM Trivia;")
+    res.send(respuestas)
+});
+

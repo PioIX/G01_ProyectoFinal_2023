@@ -29,8 +29,12 @@ async function fetchUsers(data){
         if(result.status == true){
             socket.emit('login-register', user.value);
             location.href="/home";
-        } else {
+        }
+        else if(result.status == false){
             alert("La contraseña/usuario no son correctos");
+        }
+        else{
+            location.href="/admin"
         };
     } catch (error) {
         console.error("Error:", error);
