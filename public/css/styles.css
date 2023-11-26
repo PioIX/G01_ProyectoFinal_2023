@@ -311,9 +311,9 @@ body {
 
 #imagenAlex{
   display: flex;
-  height: 44vh;
-  width: 28vw;
-  margin-left: 65px;
+  height: 40vh;
+  width: 18vw;
+  margin-left: 80px;
   -webkit-user-drag: none;
 }
 
@@ -343,9 +343,8 @@ body {
 #multijugador{
   margin-top: 15vh;
   margin-bottom: 2vh;
-  margin-left: 11vw;
   height: 8vh;
-  width: 15vw;
+  width: 27vw;
   -webkit-user-drag: none;
 }
 
