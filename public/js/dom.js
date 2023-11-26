@@ -73,6 +73,34 @@ async function fetchMultiplayer() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function fetchSala() {    
   try {
     const response = await fetch("/espera", {
