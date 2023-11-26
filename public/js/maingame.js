@@ -100,6 +100,7 @@ function listenInput(actualRow){
                             squares[element].classList.add('green')
                         });
                         showResult(`Correcto, era un/a "${word.toUpperCase()}"`)
+                        socket.emit('guess-word', {correct: correct, indexUser:indexUser, room: nameRoom});
                         return;
                     }
                

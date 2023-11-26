@@ -12,7 +12,7 @@ const {
 /*-------------------------------------------*/
 
 let userOnline = {};
-let roomsOnline = {};
+let roomsOnline = {roomtest: [1,2]};
 let roomCounter = 0;
 
 
@@ -151,10 +151,36 @@ io.on('connection', (socket) =>{
     socket.on("disconnect", async () => {
         delete userOnline[obtainKey(userOnline, socket)]
     });
+
+    socket.on("joinroom", async () =>{
+        if (Object.values(roomsOnline)[Object.values(roomsOnline).length-1].length == 2){
+            roomCounter++
+            socket.join('room'+roomCounter)
+            roomsOnline['room'+roomCounter] = [socket.id]
+            io.to(socket.id).emit('nameRoom', {room: 'room'+roomCounter, index: 0})
+        } else if (Object.values(roomsOnline)[Object.values(roomsOnline).length-1].length == 1) {
+            socket.join(Object.keys(roomsOnline)[Object.keys(roomsOnline).length-1])
+            roomsOnline[Object.keys(roomsOnline)[Object.keys(roomsOnline).length-1]].push(socket.id)
+            io.to(socket.id).emit('nameRoom', {room: 'room'+roomCounter, index: 1})
+            io.to(Object.keys(roomsOnline)[Object.keys(roomsOnline).length-1]).emit('start')
+        }
+    })
+
+    socket.on("guess-word", async (data) =>{
+        if (data.correct == 3){
+            io.to(roomsOnline[data.nameRoom][data.indexUser]).emit('win-game')
+            if (data.indexUser == 0){
+                io.to(roomsOnline[data.nameRoom][1]).emit('lost-game')
+            } else {
+                io.to(roomsOnline[data.nameRoom][0]).emit('lost-game')
+            }
+        } else {
+            io.to(roomsOnline[data.nameRoom]).emit('keep-playing')
+        }
+    })
 })
 
 app.get('/', async function(req, res){
-   // let chat = await MySQL.realizarQuery(`Select id_chat From Chats WHERE id_user1 = 10`);
     res.render('login', null);
 });
 

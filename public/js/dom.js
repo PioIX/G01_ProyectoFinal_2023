@@ -71,10 +71,6 @@ async function fetchMultiplayer() {
   }
 }
 
-function joinRoom(data){
-  console.log(data)
-  socket.emit('join-room', data)
-}
 
 
 async function fetchSala() {    
@@ -94,13 +90,6 @@ async function fetchSala() {
     console.error("Error:", error);
   }
 }
-
-function joinRoom(data){
-  console.log(data)
-  socket.emit('join-room', data)
-}
-
-
 
 
 
@@ -122,40 +111,6 @@ async function fetchPartidas() {
   }
 }
 
-function room(data){
-  socket.emit('join-room', data)
-}
-
-
-const WebSocket = require('ws');
-
-const ws = new WebSocket('ws://localhost:3000');
-
-ws.on('open', () => {
- console.log('Connected to server');
-
- ws.send('Hello, server!');
-});
-
-ws.on('message', (message) => {
- console.log(`Received: ${message}`);
-});
-
-ws.on('close', () => {
- console.log('Disconnected from server');
-});
-
-
-/*socket.on('room', (data)=>{
-  socket.join(data)
-  if(rooms[rooms.length-1].room.length == 2){
-      io.to(data).emit('start')
-      fetchSala()
-  }
-  io.to(socket.id).emit('confirm-room')
-})
-
-*/
 
 function changeScreen(){
   location.href="/modoMultijugador"
