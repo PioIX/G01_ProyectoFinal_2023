@@ -1116,7 +1116,7 @@ a{
 }
 
 #boton_ñordñe_volver{
-  margin-top: 2vh;
+  margin-top: .1vh;
   margin-left: 2vw;
   font-size: 30px;
   padding: 10px 0 10px 0;
@@ -1185,6 +1185,13 @@ a{
 }
 
 
+.rooms {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+
 
 /* ------------- TRIVIA ------------- */
 
@@ -1228,3 +1235,4 @@ a{
   font-family: 'Minecraft', Arial, Verdana, sans-serif;
   margin-top: 80px;
 }
+

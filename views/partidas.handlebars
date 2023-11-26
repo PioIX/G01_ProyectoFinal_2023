@@ -1,0 +1,46 @@
+<form action="/partidas" method="RENDER" class="container-sm"></form>
+
+<html lang="en">
+    <head>
+        <title>SpeedCraft - Solitario</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <header class="tronco">
+        <center><a href="/menu"><img src="img/SpeedCraft.png"  id="imagenHeader"></img></a></center>
+            
+            <div class="mb-3 form-group" id="boton_ñordñe_volver">
+                <a class="Minecraft" href="/elegirmodo" style="color: white">Volver</a>
+            </div>
+     
+    </header>
+    <body background="img/maderita.jpg">
+
+
+
+
+         <center><div id="rooms-container" class="container-rooms">
+        {{#each room}}
+                <div onclick="joinRoom('{{this.name}}')" class="rooms">
+                    <div style="display: flex;">
+                        <div><a class="rooms" href="/espera" style="color: white" >{{this.name}}</a></div>
+                    </div>
+                </div>
+        {{/each}}</center
+
+
+    </div>
+        </div>
+
+            <div class="result">
+            </div>
+            
+        </div>
+        <script src="./js/multiplayer.js"></script>
+    </body>
+
+    </html>
+
+</form>

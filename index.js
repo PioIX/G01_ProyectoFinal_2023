@@ -12,7 +12,7 @@ const {
 /*-------------------------------------------*/
 
 let userOnline = {};
-let roomsOnline = {};
+let roomsOnline = {roomtest: [1,2]};
 let roomCounter = 0;
 
 
@@ -114,6 +114,10 @@ app.get("/elegirmodo", (req, res) => {
   res.render("elegirmodo");
 });
 
+app.get("/partidas", async (req, res) => {
+    let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
+    res.render("partidas", {room: rooms});
+  });
 app.get("/elegirjuego", (req, res) => {
     res.render("elegirjuego");
 });
@@ -171,6 +175,33 @@ io.on('connection', (socket) =>{
     socket.on("disconnect", async () => {
         delete userOnline[obtainKey(userOnline, socket)]
     });
+
+    socket.on("joinroom", async () =>{
+        if (Object.values(roomsOnline)[Object.values(roomsOnline).length-1].length == 2){
+            roomCounter++
+            socket.join('room'+roomCounter)
+            roomsOnline['room'+roomCounter] = [socket.id]
+            io.to(socket.id).emit('nameRoom', {room: 'room'+roomCounter, index: 0})
+        } else if (Object.values(roomsOnline)[Object.values(roomsOnline).length-1].length == 1) {
+            socket.join(Object.keys(roomsOnline)[Object.keys(roomsOnline).length-1])
+            roomsOnline[Object.keys(roomsOnline)[Object.keys(roomsOnline).length-1]].push(socket.id)
+            io.to(socket.id).emit('nameRoom', {room: 'room'+roomCounter, index: 1})
+            io.to(Object.keys(roomsOnline)[Object.keys(roomsOnline).length-1]).emit('start')
+        }
+    })
+
+    socket.on("guess-word", async (data) =>{
+        if (data.correct == 3){
+            io.to(roomsOnline[data.nameRoom][data.indexUser]).emit('win-game')
+            if (data.indexUser == 0){
+                io.to(roomsOnline[data.nameRoom][1]).emit('lost-game')
+            } else {
+                io.to(roomsOnline[data.nameRoom][0]).emit('lost-game')
+            }
+        } else {
+            io.to(roomsOnline[data.nameRoom]).emit('keep-playing')
+        }
+    })
 })
 
 app.get('/', async function(req, res){
@@ -348,6 +379,125 @@ app.put('/modoSolitario',async function(req,res){
     res.send(imagenes)
 });
 
+
+/* PUNTAJE */
+
+app.post('/ranking', async function(req,res){
+    console.log(req.session.user)
+    let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
+    console.log('Tenés: ', actualPoints[0].puntaje)
+    console.log('Tenés: ', actualPoints)
+    actualPoints[0].puntaje+=10
+    await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
+    res.send({puntaje : actualPoints[0].puntaje})
+})
+
+app.get('/ranking', async function(req,res){
+    console.log("Soy un pedido GET /ranking", req.body);
+    let tablaPuntaje = await MySQL.realizarQuery("Select * From Users ORDER BY puntaje DESC;")
+    tablaPuntaje = tablaPuntaje.splice(0, 5)
+    console.log(tablaPuntaje)
+    res.render('ranking', {pibardos: tablaPuntaje})
+});
+
+io.on('connection', (socket) =>{
+    socket.on('join-room', async (data)=>{
+        socket.join(data)
+        let longitud = await MySQL.realizarQuery(` SELECT idPlayer2 FROM Rooms WHERE idPlayer1 != "NULL" `)
+        console.log(longitud)
+        if(rooms[rooms.length-1].room.length == 2){
+            io.to(data).emit('start')
+            fetchSala()
+            changeScreen()
+        }
+    })
+    socket.on('disconect', () => {
+        console.log("desconectado")
+    })
+    
+})
+
+app.put('/partidas', async function(req, res){
+    console.log(rooms)
+    await MySQL.realizarQuery(`UPDATE Rooms SET idPlayer1 = ${req.user.id} AND idPlayer2 = ${req.user.id}`)
+})
+
+app.get("/espera", async(req, res) =>{
+    let rooms = await MySQL.realizarQuery(`SELECT * FROM Rooms`)
+    res.render('espera', {room: rooms})
+});
+
+app.get("/modoMultijugador", (req,res) =>{
+    res.render('modoMultijugador', null)
+})
+
+/*
+
+let rooms = [{room1: ["Pep"]}]
+    
+}
+
+// MULTIPLAYER
+
+let room = [id_player1, id_player2]
+io.on('connection', (socket) =>{
+    socket.on('room', (data)=>{
+        socket.join(data)
+        if(rooms[rooms.length-1].room.length == 2){
+            io.to(data).emit('start')
+        }
+        io.to(socket.id).emit('confirm-room')
+    })
+    
+    socket.on('add-user', (data) => {
+        socket.broadcast.emit("add-user", data);
+    })
+    socket.on('login-register', (data) => {
+        userOnline[data] = socket;
+    })
+    // Find an available player number
+  let playerIndex = -1;
+  for (var i in connections) {
+    if (connections[i] === null) {
+      playerIndex = i;
+    }
+  }
+  
+  // Tell the connecting client what player number they are
+  socket.emit('player-number', playerIndex);
+  
+  // Ignore player 3
+  if (playerIndex == -1) return;
+  
+  connections[playerIndex] = socket;
+  
+  // Tell everyone else what player number just connected
+  socket.broadcast.emit('player-connect', playerIndex);
+
+  socket.on('actuate', function (data) {
+    const { grid, metadata } = data; // Get grid and metadata properties from client
+    
+    const move = {
+      playerIndex,
+      grid,
+      metadata,
+    };
+    // Emit the move to all other clients
+    socket.broadcast.emit('move', move);
+    });
+    socket.on('disconnect', function() {
+        console.log(`Player ${playerIndex} Disconnected`);
+        connections[playerIndex] = null;
+      });
+
+    socket.on('join-room', function(data) {
+        data.nombreSala
+        socket.join("nombre-sala");
+    });
+});
+    
+*/
+
 /* MOBS */
 
 app.post('/mobs',async function(req,res){
@@ -361,17 +511,6 @@ app.put('/mobs',async function(req,res){
 }); 
 
 /* PUNTAJE */
-
-app.post('/ranking', async function(req,res){
-    console.log(req.session.user)
-    let actualPoints = await MySQL.realizarQuery(`SELECT puntaje FROM Users WHERE user = "${req.session.user}";`)
-    console.log('Tenés: ', actualPoints[0].puntaje)
-    console.log('Tenés: ', actualPoints)
-    actualPoints[0].puntaje+=10
-    await MySQL.realizarQuery(`UPDATE Users SET puntaje = ${actualPoints[0].puntaje} WHERE user = "${req.session.user}"`)
-    res.send({puntaje : actualPoints[0].puntaje})
-});
-
 
 /* TRIVIA */
 
@@ -398,3 +537,4 @@ app.put('/admin', async function(req,res){
     let respuestas = await MySQL.realizarQuery("SELECT respuesta FROM Trivia;")
     res.send(respuestas)
 });
+
