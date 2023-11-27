@@ -142,6 +142,11 @@ app.get("/mobs", (req, res) => {
     res.render("mobs");
 });
 
+app.get("/elegirtrivia", (req, res) => {
+    res.render("elegirtrivia");
+});
+
+
 
 /* -------------------------- CHAT ----------------------------- */
 
