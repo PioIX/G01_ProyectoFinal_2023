@@ -8,6 +8,21 @@ function joinRoom(){
     socket.emit("joinroom")
 }
 
+function guessWord(){
+    socket.emit("guessWord")
+}
+
+socket.on('win-game', () =>{
+    console.log('a')
+})
+socket.on('lost-game', () =>{
+    console.log('a')
+})
+socket.on('keep-playing', () =>{
+    console.log('a')
+})
+
+
 socket.on('nameRoom', (data) =>{
     nameRoom = data.room;
     indexUser = data.index;

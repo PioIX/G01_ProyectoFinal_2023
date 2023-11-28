@@ -16,14 +16,12 @@ async function getRandomInt() {
     let randomNumber = Math.floor(Math.random() * palabras.length)
     cargarPalabras(randomNumber);
 
-
     imagenes = await fetchImagenes()
     let relatedImage = imagenes[randomNumber].imagen
     var img = document.createElement('img'); 
     img.classList.add('relatedImage')
     img.src = `${relatedImage}`; 
     document.body.appendChild(img); 
-    
 }
 
 
@@ -90,7 +88,6 @@ function listenInput(actualRow){
                         squares[element].classList.add('grey');
                     })
                     let rightIndex = compareArrays(wordArray, finalUserInput)
-                    console.log(rightIndex)
                     rightIndex.forEach(element => {
                         squares[element].classList.add('grey')
                     })
@@ -100,6 +97,8 @@ function listenInput(actualRow){
                             squares[element].classList.add('green')
                         });
                         showResult(`Correcto, era un/a "${word.toUpperCase()}"`)
+                        socket.emit('guessWord', {indexUser: indexUser, room: nameRoom});
+                        console.log("gano")
                         return;
                     }
                
@@ -167,6 +166,7 @@ function createRow(){
         return newRow;
     }else{
         showResult(`Casi, la respuesta correcta era "${word.toUpperCase()}"`)
+        socket.emit(`lost-game`)
     }
     
 }

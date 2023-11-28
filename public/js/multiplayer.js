@@ -99,6 +99,7 @@
                                 squares[element].classList.add('green')
                             });
                             showResult(`Correcto, era un/a "${word.toUpperCase()}"`)
+                            socket.emit(`win-game`)
                             return;
                         }
                 
